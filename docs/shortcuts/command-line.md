@@ -1,520 +1,728 @@
 # Shortcuts
 
 ## Shell shortcuts
+Normal Shell SHortcuts
+
+
+**Kill active process**  
+Stops the current in-progress command.
 ```
-# kill active process, stops the current in-progress command
-# Kill whatever you are running. Also clears everything on current line
 ctrl + c
+```
 
-# Exit the current shell when no process is running, or send EOF to a the running process
+**Exit the current shell**  
+Exits the shell when no process is running, or sends EOF to the running process.
+```
 ctrl + d
+```
 
-
-# minimize/suspend the current process and come back to the terminal, put process in background
+**Minimize/suspend the current process**  
+Puts the current process in the background.
+```
 ctrl + z
+```
 
-# reopen the background process, foreground
+**Reopen the background process**  
+Brings the background process to the foreground.
+```
 fg
+```
 
-# list of background jobs
+**List of background jobs**  
+Displays a list of all background jobs.
+```
 bg
+```
 
-# show the current jobs
-job
+**Show the current jobs**  
+Shows the current jobs running in the background.
+```
+jobs
+```
 
+**Up arrow shows previous commands**  
+Scrolls through the command history.
 
-# Up arrow shows previous commands
-
-
-# clear your screen
+**Clear your screen**  
+Clears the terminal screen.
+```
 ctrl + l / cmd + k
+```
 
+**Tab automatically completes commands**  
+Auto-completes commands or file names.
 
-# Tab automatically completes commands
-
-
-# set the cursor to the first letter/start in the command line, go to front of the line
+**Set the cursor to the first letter/start in the command line**  
+Moves the cursor to the beginning of the line.
+```
 ctrl + a
+```
 
-# set the cursor to the last letter/end in the command line, go to end of the line
+**Set the cursor to the last letter/end in the command line**  
+Moves the cursor to the end of the line.
+```
 ctrl + e
+```
 
-# go forward one character
+**Go forward one character**  
+Moves the cursor forward by one character.
+```
 ctrl + f
+```
 
-# go backword one character
+**Go backward one character**  
+Moves the cursor backward by one character.
+```
 ctrl + b 
+```
 
-# Move cursor one word forward, jump forward by one word
+**Move cursor one word forward**  
+Jumps the cursor forward by one word.
+```
 alt + f   /   Option + →
+```
 
-# Move cursor one word backward, jump backward by one word
+**Move cursor one word backward**  
+Jumps the cursor backward by one word.
+```
 alt + b   /   Option + ←
+```
 
-
-
-# Swap the last two characters before the cursor (not working in mac, it is showing a list of files as fuzzy finder)
+**Swap the last two characters before the cursor**  
+Swaps the last two characters before the cursor.
+```
 ctrl + t
+```
 
-# Swap the last two words before the cursor
+**Swap the last two words before the cursor**  
+Swaps the last two words before the cursor.
+```
 esc + t
+```
 
-
-
-# Cut everything backwards to beginning of line, delete the line in the command prompt
+**Cut everything backwards to beginning of line**  
+Deletes everything from the cursor to the beginning of the line.
+```
 ctrl + u
+```
 
-# to remove the word backwards from cursor position
+**Remove the word backwards from cursor position**  
+Deletes the word before the cursor.
+```
 ctrl + w
+```
 
-# Cut one word backwards using none alphabetic characters as delimiters
+**Cut one word backwards using non-alphabetic characters as delimiters**  
+Deletes one word backward using non-alphabetic characters as delimiters.
+```
 esc + backspace
+```
 
-# Cut everything forward to end of line, to delete the line starting from the cursor position
+**Cut everything forward to end of line**  
+Deletes everything from the cursor to the end of the line.
+```
 ctrl + k 
+```
 
-# to delete a word starting from the current cursor position
+**Delete a word starting from the current cursor position**  
+Deletes the word starting from the cursor position.
+```
 alt + d
+```
 
-# delete one character
+**Delete one character**  
+Deletes one character before the cursor.
+```
 ctrl + h
+```
 
-# Paste whatever was cut by the last cut command, to paste text from the kill buffer
+**Paste whatever was cut by the last cut command**  
+Pastes the last cut text.
+```
 ctrl + y
+```
 
-# Undo the last command. (Underscore. So it's actually Ctrl + Shift + minus)
+**Undo the last command**  
+Undoes the last command.
+```
 ctrl + _  (Ctrl + Shift + minus)
-
 ```
 
-## Iterm2 shortcuts
+
+
+## mac terminal helper
+
+
+### Work with Terminal windows and tabs
+
+**New window**  
+Opens a new terminal window.
 ```
-# create a new tab zsh terminal 
-cmd + t
-
-# switch tab in zsh terminal
-ctrl + tab    /      ctrl + shift + tab
-cmd + left arraow  /   cmd + right arrow
-cmd + shift + [     /    cmd + shift + ]
-
-# split the window horizonatally in zsh terminal
-cmd + d
-
-# split the window vertically in zsh terminal
-cmd + shift + d
-
-switch between splitted tabs 
-cmd + [    /     cmd + ]
-
-# close the current tab in zsh terminal
-cmd + w
-```
-
-# mac terminal helper
-
-## Work with Terminal windows and tabs
-```
-# New window
 cmd + n
+```
 
-# exit a window
+**Exit a window**  
+Exits the current terminal window.
+```
 exit
+```
 
-# New window with same command
+**New window with same command**  
+Opens a new terminal window with the same command.
+```
 Control-Command-N
+```
 
-# New tab
+**New tab**  
+Opens a new tab in the terminal.
+```
 cmd + t
+```
 
-# New tab with same command
+**New tab with same command**  
+Opens a new tab with the same command.
+```
 Control-Command-T
+```
 
-# Show or hide tab bar
+**Show or hide tab bar**  
+Shows or hides the tab bar.
+```
 Shift-Command-T
+```
 
-# Show all tabs or exit tab overview
+**Show all tabs or exit tab overview**  
+Shows all tabs or exits tab overview.
+```
 Shift-Command-Backslash (\)
+```
 
-# New command
+**New command**  
+Opens a new command prompt.
+```
 Shift-Command-N
+```
 
-# New remote connection
+**New remote connection**  
+Opens a new remote connection.
+```
 Shift-Command-K
+```
 
-# Show or hide Inspector
+**Show or hide Inspector**  
+Shows or hides the Inspector.
+```
 Command-I
+```
 
-# Edit title
+**Edit title**  
+Edits the terminal window title.
+```
 Shift-Command-I
+```
 
-# Edit background colour
+**Edit background colour**  
+Edits the terminal window background colour.
+```
 Option-Command-I
+```
 
-# Make fonts bigger
+**Make fonts bigger**  
+Increases the font size.
+```
 Command-Plus (+)
+```
 
-Make fonts smaller
-
+**Make fonts smaller**  
+Decreases the font size.
+```
 Command-Minus (-)
+```
 
-Next window
-
+**Next window**  
+Switches to the next terminal window.
+```
 Command-Grave Accent (`)
+```
 
-Previous window
-
+**Previous window**  
+Switches to the previous terminal window.
+```
 Command-Shift-Tilde (~)
+```
 
-Next Tab
-
+**Next Tab**  
+Switches to the next tab.
+```
 Control-Tab
+```
 
-Previous Tab
-
+**Previous Tab**  
+Switches to the previous tab.
+```
 Control-Shift-Tab
+```
 
-Split window into two panes
-
+**Split window into two panes**  
+Splits the terminal window into two panes.
+```
 Command-D
+```
 
-Close split pane
-
+**Close split pane**  
+Closes the split pane.
+```
 Shift-Command-D
+```
 
-Close tab
-
+**Close tab**  
+Closes the current tab.
+```
 Command-W
+```
 
-Close window
-
+**Close window**  
+Closes the current window.
+```
 Shift-Command-W
+```
 
-Close other tabs
-
+**Close other tabs**  
+Closes all other tabs.
+```
 Option-Command-W
+```
 
-Close all
-
+**Close all**  
+Closes all tabs and windows.
+```
 Option-Shift-Command-W
+```
 
-Scroll to top
-
+**Scroll to top**  
+Scrolls to the top of the terminal window.
+```
 Command-Home
+```
 
-Scroll to bottom
-
+**Scroll to bottom**  
+Scrolls to the bottom of the terminal window.
+```
 Command-End
+```
 
-Page up
-
+**Page up**  
+Scrolls up one page.
+```
 Command-Page Up
+```
 
-Page down
-
+**Page down**  
+Scrolls down one page.
+```
 Command-Page Down
+```
 
-Line up
-
+**Line up**  
+Scrolls up one line.
+```
 Option-Command-Page Up
+```
 
-Line down
-
+**Line down**  
+Scrolls down one line.
+```
 Option-Command-Page Down
 ```
 
-## Edit a command line
 
+### Edit a command line
+
+**Reposition the insertion point**  
+Press and hold the Option key while moving the pointer to a new insertion point.
+
+**Move the insertion point to the beginning of the line**  
+Moves the insertion point to the beginning of the line.
 ```
-Reposition the insertion point
-
-Press and hold the Option key while moving the pointer to a new insertion point
-
-Move the insertion point to the beginning of the line
-
 Control-A
+```
 
-Move the insertion point to the end of the line
-
+**Move the insertion point to the end of the line**  
+Moves the insertion point to the end of the line.
+```
 Control-E
+```
 
-Move the insertion point forwards one character
-
+**Move the insertion point forwards one character**  
+Moves the insertion point forward by one character.
+```
 Right Arrow
+```
 
-Move the insertion point backwards one character
-
+**Move the insertion point backwards one character**  
+Moves the insertion point backward by one character.
+```
 Left Arrow
+```
 
-Move the insertion point forwards one word
-
+**Move the insertion point forwards one word**  
+Moves the insertion point forward by one word.
+```
 Option-Right Arrow
+```
 
-Move the insertion point backwards one word
-
+**Move the insertion point backwards one word**  
+Moves the insertion point backward by one word.
+```
 Option-Left Arrow
+```
 
-Delete the line
-
+**Delete the line**  
+Deletes the entire line.
+```
 Control-U
+```
 
-Delete to the end of the line
-
+**Delete to the end of the line**  
+Deletes from the cursor to the end of the line.
+```
 Control-K
+```
 
-Delete forwards to the end of the word
-
+**Delete forwards to the end of the word**  
+Deletes from the cursor to the end of the word.
+```
 Option-D (available when Use Option as Meta key is selected)
+```
 
-Delete backwards to the beginning of the word
-
+**Delete backwards to the beginning of the word**  
+Deletes from the cursor to the beginning of the word.
+```
 Control-W
+```
 
-Delete one character
-
+**Delete one character**  
+Deletes one character before the cursor.
+```
 Delete
+```
 
-Forward-delete one character
-
+**Forward-delete one character**  
+Deletes one character after the cursor.
+```
 Forward Delete (or use Fn-Delete)
+```
 
-Transpose two characters
-
+**Transpose two characters**  
+Swaps the two characters before the cursor.
+```
 Control-T
 ```
 
+### Select and find text in a Terminal window
 
-## Select and find text in a Terminal window
+**Select a complete file path**  
+Press and hold the Shift and Command keys and double-click the path.
 
+**Select a complete line of text**  
+Triple-click the line.
+
+**Select a word**  
+Double-click the word.
+
+**Select a URL**  
+Press and hold the Shift and Command keys and double-click the URL.
+
+**Select a rectangular block**  
+Press and hold the Option key and drag to select text.
+
+**Cut**  
+Cuts the selected text.
 ```
-Action
-
-Shortcut
-
-Select a complete file path
-
-Press and hold the Shift and Command keys and double-click the path
-
-Select a complete line of text
-
-Triple-click the line
-
-Select a word
-
-Double-click the word
-
-Select a URL
-
-Press and hold the Shift and Command keys and double-click the URL
-
-Select a rectangular block
-
-Press and hold the Option key and drag to select text
-
-Cut
-
 Command-X
+```
 
-Copy
-
+**Copy**  
+Copies the selected text.
+```
 Command-C
+```
 
-Copy without background colour
-
+**Copy without background colour**  
+Copies the selected text without background colour.
+```
 Control-Shift-Command-C
+```
 
-Copy plain text
-
+**Copy plain text**  
+Copies the selected text as plain text.
+```
 Option-Shift-Command-C
+```
 
-Paste
-
+**Paste**  
+Pastes the copied text.
+```
 Command-V
+```
 
-Paste the selection
-
+**Paste the selection**  
+Pastes the selected text.
+```
 Shift-Command-V
+```
 
-Paste escaped text
-
+**Paste escaped text**  
+Pastes the copied text with escape characters.
+```
 Control-Command-V
+```
 
-Paste escaped selection
-
+**Paste escaped selection**  
+Pastes the selected text with escape characters.
+```
 Control-Shift-Command-V
+```
 
-Find
-
+**Find**  
+Finds text in the terminal window.
+```
 Command-F
+```
 
-Find next
-
+**Find next**  
+Finds the next occurrence of the text.
+```
 Command-G
+```
 
-Find previous
-
+**Find previous**  
+Finds the previous occurrence of the text.
+```
 Command-Shift-G
+```
 
-Find using the selected text
-
+**Find using the selected text**  
+Finds using the selected text.
+```
 Command-E
+```
 
-Jump to the selected text
-
+**Jump to the selected text**  
+Jumps to the selected text.
+```
 Command-J
+```
 
-Select all
-
+**Select all**  
+Selects all text in the terminal window.
+```
 Command-A
+```
 
-Open the character viewer
-
+**Open the character viewer**  
+Opens the character viewer.
+```
 Control-Command-Space
 ```
 
-## Work with marks and bookmarks
+### Work with marks and bookmarks
+
+**Mark**  
+Marks the current line.
 ```
-Mark
-
 Command-U
+```
 
-Mark as bookmark
-
+**Mark as bookmark**  
+Marks the current line as a bookmark.
+```
 Option-Command-U
+```
 
-Unmark
-
+**Unmark**  
+Removes the mark from the current line.
+```
 Shift-Command-U
+```
 
-Mark line and send return
-
+**Mark line and send return**  
+Marks the current line and sends a return.
+```
 Command-Return
+```
 
-Send return without marking
-
+**Send return without marking**  
+Sends a return without marking the line.
+```
 Shift-Command-Return
+```
 
-Insert bookmark
-
+**Insert bookmark**  
+Inserts a bookmark.
+```
 Shift-Command-M
+```
 
-Insert bookmark with name
-
+**Insert bookmark with name**  
+Inserts a bookmark with a name.
+```
 Option-Shift-Command-M
+```
 
-Jump to previous mark
-
+**Jump to previous mark**  
+Jumps to the previous mark.
+```
 Command-Up Arrow
+```
 
-Jump to next mark
-
+**Jump to next mark**  
+Jumps to the next mark.
+```
 Command-Down Arrow
+```
 
-Jump to previous bookmark
-
+**Jump to previous bookmark**  
+Jumps to the previous bookmark.
+```
 Option-Command-Up Arrow
+```
 
-Jump to next bookmark
-
+**Jump to next bookmark**  
+Jumps to the next bookmark.
+```
 Option-Command-Down Arrow
+```
 
-Clear to previous mark
-
+**Clear to previous mark**  
+Clears to the previous mark.
+```
 Command-L
+```
 
-Clear to previous bookmark
-
+**Clear to previous bookmark**  
+Clears to the previous bookmark.
+```
 Option-Command-L
+```
 
-Clear to start
-
+**Clear to start**  
+Clears to the start of the terminal window.
+```
 Command-K
+```
 
-Select between marks
-
+**Select between marks**  
+Selects text between marks.
+```
 Shift-Command-A
 ```
 
+### Other shortcuts
 
-## Other shortcuts
+**Enter or exit full screen**  
+Enters or exits full screen mode.
 ```
-Enter or exit full screen
-
 Control-Command-F
+```
 
-Show or hide colours
-
+**Show or hide colours**  
+Shows or hides the colour panel.
+```
 Shift-Command-C
+```
 
-Open Terminal settings
-
+**Open Terminal settings**  
+Opens the Terminal settings.
+```
 Command-Comma (,)
+```
 
-Break
+**Break**  
+Typing Command-Full Stop (.) is equivalent to entering Control-C on the command line.
 
-Typing Command-Full Stop (.) is equivalent to entering Control-C on the command line
-
-Print
-
+**Print**  
+Prints the terminal window.
+```
 Command-P
+```
 
-Soft reset terminal emulator state
-
+**Soft reset terminal emulator state**  
+Performs a soft reset of the terminal emulator state.
+```
 Option-Command-R
+```
 
-Hard reset terminal emulator state
-
+**Hard reset terminal emulator state**  
+Performs a hard reset of the terminal emulator state.
+```
 Control-Option-Command-R
+```
 
-Open a URL
+**Open a URL**  
+Hold down the Command key and double-click the URL.
 
-Hold down the Command key and double-click the URL
+**Add the complete path to a file**  
+Drag the file from the Finder into the Terminal window.
 
-Add the complete path to a file
-
-Drag the file from the Finder into the Terminal window
-
-Export text as
-
+**Export text as**  
+Exports the terminal text.
+```
 Command-S
+```
 
-Export selected text as
-
+**Export selected text as**  
+Exports the selected text.
+```
 Shift-Command-S
+```
 
-Reverse search command history
-
+**Reverse search command history**  
+Searches the command history in reverse.
+```
 Control-R
+```
 
-Toggle "Allow Mouse Reporting" option
-
+**Toggle "Allow Mouse Reporting" option**  
+Toggles the "Allow Mouse Reporting" option.
+```
 Command-R
+```
 
-Toggle "Use Option as Meta Key" option
-
+**Toggle "Use Option as Meta Key" option**  
+Toggles the "Use Option as Meta Key" option.
+```
 Command-Option-O
+```
 
-Show alternate screen
-
+**Show alternate screen**  
+Shows the alternate screen.
+```
 Shift-Command-Down Arrow
+```
 
-Hide alternate screen
-
+**Hide alternate screen**  
+Hides the alternate screen.
+```
 Shift-Command-Up Arrow
+```
 
-Open man page for selection
-
+**Open man page for selection**  
+Opens the man page for the selected text.
+```
 Control-Shift-Command-Question Mark (?)
+```
 
-Search man page index for selection
-
+**Search man page index for selection**  
+Searches the man page index for the selected text.
+```
 Control-Option-Command-Slash (/)
+```
 
-Complete directory or file name
+**Complete directory or file name**  
+On a command line, type one or more characters, then press Tab.
 
-On a command line, type one or more characters, then press Tab
-
-Display a list of possible directory or file name completions
-
-On a command line, type one or more characters, then press Tab twice
+**Display a list of possible directory or file name completions**  
+On a command line, type one or more characters, then press Tab twice.
 ```
 
