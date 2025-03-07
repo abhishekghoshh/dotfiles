@@ -32,5 +32,5 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          tags: '${{ secrets.DOCKER_USERNAME }}/${{ github.repository }}:latest'
+          tags: 'abhishek1009/dotfiles:latest'
           push: true
