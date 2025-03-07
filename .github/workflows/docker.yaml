@@ -14,7 +14,7 @@ on:
 
 
 jobs:
-  build:
+  publish_images_type_1:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -32,5 +32,19 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          tags: 'abhishek1009/dotfiles:latest'
+          tags: '${{ secrets.DOCKER_USERNAME }}/dotfiles:latest'
           push: true
+  publish_images_type_2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: build image
+        run: |
+          docker build ./api/ -t rishabkumar7/devops-qr-code-backend:latest
+          docker build ./front-end-nextjs/ -t rishabkumar7/devops-qr-code-frontend:latest
+      - name: push image to docker hub
+        run: |
+          docker login -u rishabkumar7 -p ${{ secrets.DOCKER_HUB_TOKEN }}
+          docker push rishabkumar7/devops-qr-code-backend:latest
+          docker push rishabkumar7/devops-qr-code-frontend:latest
