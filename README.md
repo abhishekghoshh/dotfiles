@@ -1,6 +1,19 @@
 # All configs and setups in a single repo
 
 
+
+## Youtube channels to follow
+
+- [typecraft](https://www.youtube.com/@typecraft_dev/videos)
+- [DevOps Toolbox](https://www.youtube.com/@devopstoolbox/videos)
+  - [omerxx/dotfiles](https://github.com/omerxx/dotfiles)
+- [ThePrimeTime](https://www.youtube.com/@ThePrimeTimeagen/videos)
+- [TheVimeagen](https://www.youtube.com/@TheVimeagen/playlists)
+- [TJ DeVries](https://www.youtube.com/@teej_dv)
+- [Michael Horn](https://www.youtube.com/@MichaelNROH)
+- [Josean Martinez](https://www.youtube.com/@joseanmartinez/videos)
+
+
 ## Need to install 
 ```
 git (gh, gh-dash)
@@ -14,6 +27,10 @@ posting (a cmd version of postman)
 yazi (file reader)
 rainfrog(db tool)
 lua, gcc, go, rust, java, scala, node, npm
+
+hyperland
+Aerospace
+startship
 ```
 
 ## Some other packages to explore
