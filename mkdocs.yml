@@ -3,27 +3,6 @@ site_url: https://abhishekghoshh.github.io/dotfiles/
 
 nav:
   - Home: index.md
-  - git:
-    - introduction: git/introduction.md
-    - configurations: git/configurations.md
-    - cloning: git/cloning.md
-    - initialization: git/intialization.md
-    - modifying files: git/modifying_files.md
-    - project status: git/project_status.md
-    - logs: git/logs.md
-    - commits: git/commits.md
-    - branching: git/branching.md
-    - pull and synchronize: git/pull_and_synchronize.md
-    - push: git/push.md
-    - rebase: git/rebase.md
-    - tagging: git/tagging.md
-    - advanced: git/advanced.md
-    - links: git/links.md
-  - linux:
-    - introduction: linux/introduction.md
-    - commands: linux/commands.md
-    - others: linux/others.md
-    - links: linux/links.md
   - shortcuts:
     - typing: shortcuts/typing.md
     - command line: shortcuts/command-line.md
