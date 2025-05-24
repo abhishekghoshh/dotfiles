@@ -31,6 +31,9 @@ lua, gcc, go, rust, java, scala, node, npm
 hyperland
 Aerospace
 startship
+Raycast
+
+Yazi - Terminal file explorer (Check it surely)
 ```
 
 ## Some other packages to explore
