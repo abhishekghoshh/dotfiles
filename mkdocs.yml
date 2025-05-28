@@ -4,12 +4,13 @@ site_url: https://abhishekghoshh.github.io/dotfiles/
 nav:
   - Home: index.md
   - shortcuts:
+    - tmux: shortcuts/tmux.md
+    - iterm: shortcuts/iterm.md 
     - typing: shortcuts/typing.md
     - command line: shortcuts/command-line.md
     - shell: shortcuts/shell.md
     - chrome: shortcuts/chrome.md 
-    - iterm: shortcuts/iterm.md 
-    - tmux: shortcuts/tmux.md
+
   - nvim:
     - introduction: nvim/introduction.md
     - vim: nvim/vim.md
