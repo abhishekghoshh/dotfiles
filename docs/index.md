@@ -1,9 +1,7 @@
-# Welcome to dotfiles
-
-Setup to install all the files one by one
-```sh
-ln -s $ACTUAL_PATH_DOTFILES/nvim ~/nvim
-```
+# All configs and setups
 
 
-> see this mkdocs.yaml later https://github.com/kubernetes-sigs/gateway-api/blob/main/mkdocs.yml
+## Command Line Tools I Use
+
+- **Alacritty + TMUX**: Terminal emulator combined with terminal multiplexing for efficient workflow.
+- **iTerm2**: Feature-rich terminal emulator for macOS, offering similar functionality to Alacritty + TMUX with minimal setup.

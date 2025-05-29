@@ -3,9 +3,13 @@ site_url: https://abhishekghoshh.github.io/dotfiles/
 
 nav:
   - Home: index.md
+  - cmd-line tootls:
+    - zsh: cmd-line-tools/zsh.md
+    - tmux: cmd-line-tools/tmux.md
+    - iterm: cmd-line-tools/iterm.md
+    - alacritty: cmd-line-tools/alacritty.md
+
   - shortcuts:
-    - tmux: shortcuts/tmux.md
-    - iterm: shortcuts/iterm.md 
     - typing: shortcuts/typing.md
     - command line: shortcuts/command-line.md
     - shell: shortcuts/shell.md

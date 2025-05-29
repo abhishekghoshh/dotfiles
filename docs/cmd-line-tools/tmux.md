@@ -191,3 +191,4 @@ run '~/.tmux/plugins/tpm/tpm'
 ## Links
 
 - [Tmux has forever changed the way I write code.](https://www.youtube.com/watch?v=DzNmUNvnB04)
+- [TMUX in 100 seconds | Prime Reacts](https://www.youtube.com/watch?v=0eHZRPzbiJ0)
