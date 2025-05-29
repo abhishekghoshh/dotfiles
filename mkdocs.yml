@@ -3,21 +3,20 @@ site_url: https://abhishekghoshh.github.io/dotfiles/
 
 nav:
   - Home: index.md
-  - cmd-line tootls:
+  - cmd-line tools:
     - zsh: cmd-line-tools/zsh.md
     - tmux: cmd-line-tools/tmux.md
     - iterm: cmd-line-tools/iterm.md
     - alacritty: cmd-line-tools/alacritty.md
-
+  - nvim:
+    - introduction: nvim/introduction.md
+    - vim: nvim/vim.md
   - shortcuts:
     - typing: shortcuts/typing.md
     - command line: shortcuts/command-line.md
     - shell: shortcuts/shell.md
     - chrome: shortcuts/chrome.md 
 
-  - nvim:
-    - introduction: nvim/introduction.md
-    - vim: nvim/vim.md
 
 
 theme:
