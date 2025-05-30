@@ -29,6 +29,12 @@ Go to this [.tmux.conf](https://github.com/abhishekghoshh/dotfiles/blob/master/t
 
 # Uninstall plugins not in list (leader + Alt+u)
     <leader> alt u
+
+# Saving the current session
+    <leader> ctrl s
+
+# reload the saved session
+    <leader> ctrl r
 ```
 
 
@@ -207,3 +213,7 @@ All the plugins are installed to ~/.tmux/plugins/ so alternatively you can find 
 - [Tmux has forever changed the way I write code.](https://www.youtube.com/watch?v=DzNmUNvnB04)
   - [dreamsofcode-io/tmux/blob/main/tmux.conf](https://github.com/dreamsofcode-io/tmux/blob/main/tmux.conf)
 - [TMUX in 100 seconds | Prime Reacts](https://www.youtube.com/watch?v=0eHZRPzbiJ0)
+- [tmux plugins]()
+  - [tmux-sessionizer](https://github.com/edr3x/tmux-sessionizer)
+  - [erikw/tmux-powerline](https://github.com/erikw/tmux-powerline)
+  - [tmux-plugins/tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect)
