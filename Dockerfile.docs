@@ -1,43 +1,37 @@
-# Use the latest Ubuntu image as the base
-FROM ubuntu:latest
+# Use the official Python Alpine image as the base
+FROM python:3-alpine
 
-# Set non-interactive mode for APT
-ENV DEBIAN_FRONTEND=noninteractive
+# Set environment variables
+ENV DOTFILES_DIR=/workspace/dotfiles \
+    MKDOCS_VERSION=1.6.1 \
+    PYTHONUNBUFFERED=1
 
-# Update package lists and install required packages
-RUN apt-get update && \
-    apt-get install -y software-properties-common && \
-    apt-add-repository -y universe && \
-    apt-add-repository -y ppa:deadsnakes/ppa && \
-    apt-get update && \
-    apt-get install -y python3.13 python3.13-venv python3.13-dev python3-pip libcairo2 libcairo2-dev && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Set environment variables for MkDocs
-ENV MKDOCS_VERSION=1.6.1
-
-# Create a virtual environment
-RUN python3.13 -m venv /venv
-
+# Install required packages
+RUN apk add --no-cache \
+    python3-dev py3-virtualenv \
+    cairo-dev gcc musl-dev pkgconfig
 
 # Create the workspace directory
-RUN mkdir -p /home/abhishek/workspace/dotfiles
+RUN mkdir -p ${DOTFILES_DIR}
 
-# Set the working directory to workspace
-WORKDIR /home/abhishek/workspace/dotfiles
+# Set the working directory
+WORKDIR ${DOTFILES_DIR}
+
+# Create a virtual environment
+RUN python3 -m venv /venv
 
 # Copy requirements.txt
-COPY requirements.txt requirements.txt 
+COPY requirements.txt requirements.txt
 
-# RUN source /venv/bin/activate
+# Install Python packages in the virtual environment
+RUN /venv/bin/pip install --upgrade pip && \
+    /venv/bin/pip install -r requirements.txt
 
-# Install MkDocs and any other required Python packages in the virtual environment
-# RUN ./venv/bin/pip install --no-cache-dir mkdocs==${MKDOCS_VERSION} mkdocs mkdocs-material pillow cairosvg "mkdocs-material[imaging]"
-RUN /venv/bin/pip install -r requirements.txt
+# Copy mkdocs configuration files
+COPY mkdocs.yml ./
 
-
-# Copy the contents of the current directory to /home/abhishek/workspace/dotfiles
-COPY . .
+# Copy the docs directory
+COPY docs ./docs
 
 # Expose the port that MkDocs will run on
 EXPOSE 8000
