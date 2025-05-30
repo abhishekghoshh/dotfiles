@@ -33,7 +33,11 @@ Feature-rich terminal emulator for macOS, offering similar functionality to Alac
 
 - Ranger: Command line based file explorer. [link](https://github.com/ranger/ranger)
 - Starship: The minimal, blazing-fast, and infinitely customizable prompt for any shell! [link](https://starship.rs/guide/)
-- Oh My Posh: A prompt theme engine for any shell. [link](https://ohmyposh.dev/)
+- Oh My Posh: A prompt theme engine for any shell. 
+  - [Oh My Posh](https://ohmyposh.dev/)
+    - [jandedobbeleer/oh-my-posh](https://github.com/jandedobbeleer/oh-my-posh)
+  - [We may have killed p10k, so I found the perfect replacement.](https://www.youtube.com/watch?v=9U8LCjuQzdc)
+    - [dreamsofautonomy/zen-omp/blob/main/zen.toml](https://github.com/dreamsofautonomy/zen-omp/blob/main/zen.toml)
 
 
 ## Some entertaining

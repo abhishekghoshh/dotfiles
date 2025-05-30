@@ -66,7 +66,7 @@ p10k configure
 ```
 
 ### Youtube
-- [This Zsh config is perhaps my favorite one yet.](https://www.youtube.com/watch?v=ud7YxC33Z3w)
+- [This Zsh config is perhaps my favorite one yet. | powerlevel10k](https://www.youtube.com/watch?v=ud7YxC33Z3w)
 
 
 ### Blogs 
@@ -78,6 +78,7 @@ p10k configure
 ## fzf
 
 ### Youtube
+- [This may be my favorite CLI tool ever](https://www.youtube.com/watch?v=oTNRvnQLLLs)
 - [FZF Will CHANGE How You Work](https://www.youtube.com/watch?v=MvLQor1Ck3M)
 
 

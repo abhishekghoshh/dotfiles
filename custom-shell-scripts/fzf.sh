@@ -5,9 +5,53 @@
 
 
 # Some custom commands for fzf
-export FZF_DEFAULT_OPTS='--color=fg:#cdd6f4,bg:#1e1e2e,fg+:#cdd6f4,bg+:#313244,hl:#f38ba8,hl+:#f38ba8,pointer:#f5c2e7,marker:#f5c2e7,info:#b4befe,prompt:#f5c2e7,spinner:#f5c2e7,header:#89b4fa --height 40% --tmux bottom,40% --layout reverse --border top'
+export FZF_DEFAULT_OPTS='--color=fg:#cdd6f4,bg:#1e1e2e,fg+:#cdd6f4,bg+:#313244,hl:#f38ba8,hl+:#f38ba8,pointer:#f5c2e7,marker:#f5c2e7,info:#b4befe,prompt:#f5c2e7,spinner:#f5c2e7,header:#89b4fa'
 
-ff() {
+o(){
+  files=$(fzf -m \
+    --preview="bat --color=always {}" \
+    --preview-window=right:65% \
+    --height=100% \
+    --layout=reverse \
+    --border=rounded \
+    --info=inline \
+    --style full)
+  [ -n "$files" ] && nvim $files
+}
+
+# Bind Ctrl+O to run o() in supported shells (bash/zsh)
+if [[ -n $ZSH_VERSION ]]; then
+  bindkey -s '^O' 'o\n'
+elif [[ -n $BASH_VERSION ]]; then
+  bind -x '"\C-o":o'
+fi
+
+zz() {
+  local dir
+  dir=$(zoxide query -l | fzf \
+    --preview="lsd -alh --color=always {}" \
+    --preview-window=right:65% \
+    --height=100% \
+    --layout=reverse \
+    --border=rounded \
+    --info=inline \
+    --style full \
+    --prompt="Go to > ")
+  if [[ -n "$dir" ]]; then
+    z "$dir" || echo "Failed to cd into $dir"
+  fi
+}
+
+# Bind Ctrl+Z to run zz() in supported shells (bash/zsh)
+if [[ -n $ZSH_VERSION ]]; then
+  bindkey -s '^Z' 'zz\n'
+elif [[ -n $BASH_VERSION ]]; then
+  bind -x '"\C-z":zz'
+fi
+
+
+
+f() {
   clear
   local dir="${1:-$(pwd)}"
   f_index=9
@@ -34,13 +78,13 @@ ff() {
           echo -e \"\033[1;31mInvalid path: \$display_path\033[0m\"
         fi
       " \
-      --preview-window=right:60%:wrap,border-sharp --height=100% --layout=reverse --border=rounded --info=inline --style full --no-clear)
+      --preview-window=right:60%:wrap,border-sharp --height=100% --layout=reverse --border=rounded --info=inline --style full)
     [ -z "$selected" ] && break
     name=$(echo "$selected" | awk "{for(i=$f_index;i<=NF;++i)printf \$i\" \"; print \"\"}" | sed 's/ *$//')
     local selected_path="$dir/$name"
     selected_path=$(realpath "$selected_path" 2>/dev/null || echo "$selected_path")
     if [ -d "$selected_path" ]; then
-      cd "$selected_path" || echo "Failed to change directory to $selected_path"
+      z "$selected_path" || echo "Failed to change directory to $selected_path"
       dir="$selected_path"
     fi
   done
@@ -48,7 +92,7 @@ ff() {
 
 # Bind Ctrl+F (ff) to open ff in supported shells (bash/zsh)
 if [[ -n $ZSH_VERSION ]]; then
-  bindkey -s '^F' 'ff\n'
+  bindkey -s '^F' 'f\n'
 elif [[ -n $BASH_VERSION ]]; then
-  bind -x '"\C-f":ff'
+  bind -x '"\C-f":f'
 fi
