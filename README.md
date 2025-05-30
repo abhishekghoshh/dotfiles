@@ -34,10 +34,7 @@ startship
 Raycast
 
 Yazi - Terminal file explorer (Check it surely)
-```
 
-## Some other packages to explore
-```
 kitty zathura zellij
 ```
 

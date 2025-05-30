@@ -1,8 +1,15 @@
+# Alacritty configurations
+
+**tmux loads all the configs from the `~/.tmux.conf`**
+
+## Alacritty Configuration
+
+Go to this [alacritty.toml](https://github.com/abhishekghoshh/dotfiles/blob/master/alacritty/alacritty.toml) and copy to your `~/.config/alacritty/alacritty.toml`
 
 
 ## Alacritty themes 
 
-### How to Install and Set Alacritty Themes
+How to Install and Set Alacritty Themes
 
 1. **Clone the Alacritty themes repository:**
     ```bash
@@ -20,32 +27,5 @@
 
 For more themes, browse the [alacritty-theme repository](https://github.com/alacritty/alacritty-theme).
 
-## Alacritty config
+##  config
 
-```bash
-import = [
-    "~/.config/alacritty/themes/themes/coolnight.toml"
-]
-
-[ env ]
-TERM = "xterm-256color"
-
-[window]
-padding.x = 10
-padding.y = 10
-# startup_mode = "fullscreen"
-dimensions.columns = 250
-dimensions.lines = 60
-
-decorations = "Buttonless"
-
-opacity = 0.5
-blur = true
-
-option_as_alt = "Both"
-
-[font]
-normal.family = "JetBrainsMono Nerd Font Mono"
-
-size = 12
-```

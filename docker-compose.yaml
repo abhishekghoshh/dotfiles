@@ -1,14 +1,20 @@
-version: '3'
-
 services:
   dotfiles:
     container_name: dotfiles
     image: abhishek1009/dotfiles:latest
     build:
-      context: .  # Set the build context to the docs directory
+      context: .
+      dockerfile: Dockerfile.docs
     ports:
-      - "8001:8000"
-    # volume mount so that it will get the local changes automatically
+      - "8000:8000"
     volumes:
-      # - ./nvim:/root/.config/nvim
-      - ./:/home/abhishek/workspace/dotfiles  # Mounts the local docsdirectory to /docs in the container
+      - ./:/home/abhishek/workspace/dotfiles
+  sandbox:
+    container_name: sandbox
+    image: abhishek1009/sandbox:latest
+    build:
+      context: . 
+      dockerfile: Dockerfile.sandbox
+    command: sleep infinity
+    volumes:
+      - ./nvim:/root/.config/nvim

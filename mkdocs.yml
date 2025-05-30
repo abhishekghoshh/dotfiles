@@ -13,6 +13,15 @@ nav:
   - nvim:
     - introduction: nvim/introduction.md
     - vim: nvim/vim.md
+    - vim-resources: nvim/vim-resources.md
+    - installation: nvim/installation.md
+    - vim-motions: nvim/vim-motions.md
+    - nvim-resources: nvim/nvim-resources.md
+    - nvim-shortcuts: nvim/nvim-shortcuts.md
+    - go: nvim/go-setup.md
+    - java-setup: nvim/java-setup.md
+    - rust-setup: nvim/rust-setup.md
+
   - shortcuts:
     - typing: shortcuts/typing.md
     - command line: shortcuts/command-line.md

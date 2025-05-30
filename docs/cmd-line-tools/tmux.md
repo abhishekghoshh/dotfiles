@@ -2,6 +2,11 @@
 
 **tmux loads all the configs from the `~/.tmux.conf`**
 
+## Tmux Configuration
+
+Go to this [.tmux.conf](https://github.com/abhishekghoshh/dotfiles/blob/master/tmux/.tmux.conf) and copy to your `~/.tmux.conf`
+
+
 ## Key bindings
 
 
@@ -42,6 +47,21 @@
     <leader> {
     <leader> }
 
+# Move to the desired pane using vim key binding 
+    <leader> j  # for down
+    <leader> k  # for up
+    <leader> h  # for left
+    <leader> l  # for right
+
+# Move to the desired pane using vim key binding 
+    <leader> <down-arrow>  # for down
+    <leader> <up-arrow>  # for up
+    <leader> <left-arrow>  # for left
+    <leader> <right-arrow>  # for right
+
+# Move to the desired pane
+    <leader> q  # then press the number to go to that pane
+
 # Toggle between different built-in pane layouts
     <leader> <space>
 
@@ -50,6 +70,9 @@
 
 # Toggle full screen of a pane
     <leader> z
+
+# Turn pane into a window
+    <leader> !
 ```
 
 
@@ -60,9 +83,14 @@
 
 # Go to the previous window
     <leader> p
+    shift <left-arrow>
 
 # Go to the next window
     <leader> n
+    <shift> <right arrow>
+
+# Go to a specifix window (0,1,2....)
+    <leader> <window-number>
 
 # Rename the window
     :rename-window <name>
@@ -74,27 +102,36 @@
 
 ### Session
 ```bash
+# Open a new session
+    tmux
+
+# Create a new session with name
+    tmux new -s <session-name>
+
+# Attach to the last active session
+    tmux attach
+
+# Attach to the session with session name
+    tmux attach -t <session-name>
+
+# Detach from the current session
+    tmux detach
+
+# List all the sessions
+    tmux list-sessions
+    tmux ls
+
 # See the list of windows in a session
     <leader> w
 
 # Detach the current session
     <leader> d
 
-# List all the sessions
-    tmux list-sessions
-    tmux ls
-
-# Attach to the last active session
-    tmux attach
-
-# Detach from the current session
-    tmux detach
-
-# Open a new session
-    tmux
-
 # See all the sessions in tmux
     <leader> s
+
+# Create a session inside tmux
+    :new 
 
 # Rename a session
     :rename-session
@@ -102,6 +139,24 @@
 # Kill current session
     :kill-session
 ```
+
+
+### Copying
+```bash
+# Using mouse 
+    press shift then select then copy the selected item
+    type v  # it will select the text using visual mode
+    ctrl c  # copy the text
+    ctrl v  # paste the text
+
+# Vim style
+    <leader> [  # for going to the vim mode
+    # then using vim commands go to the line
+    type v  # it will select the text using visual mode
+    ctrl c  # copy the text
+    ctrl v  # paste the text
+```
+
 
 
 ## Plugins
@@ -144,51 +199,11 @@ All the plugins are installed to ~/.tmux/plugins/ so alternatively you can find 
 ```
 
 
-## Tmux Configuration
-
-```bash
-# unbinding the leader r and changing to source the config
-unbind r
-bind r source-file ~/.tmux.conf
-
-
-# changing the leader key
-set -g prefix C-s
-
-# set the mouse scrolling for tmux
-setw -g mouse on
-
-# act like vim
-set -g mode-keys vi
-bind-key h select-pane -L
-bind-key j select-pane -D
-bind-key k select-pane -U
-bind-key l select-pane -R
-
-
-# download the tmux plugin manager and add tmux plugin here
-
-# List of plugins
-set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'tmux-plugins/tmux-sensible'
-set -g @plugin 'dracula/tmux'
-set -g @plugin 'tmux-plugins/tmux-resurrect'
-set -s default-terminal 'xterm-256color'
-
-set -g @dracula-show-powerline true
-set -g @dracula-fixed-location "Kolkata"
-set -g @dracula-plugins "battery weather time"
-set -g @dracula-show-fahrenheit false
-set -g @dracula-show-flags true
-set -g @dracula-show-left-icon session
-set -g status-position bottom
-
-# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-run '~/.tmux/plugins/tpm/tpm'
-```
 
 
 ## Links
 
+- [Tmux Cheat Sheet & Quick Reference](https://tmuxcheatsheet.com/)
 - [Tmux has forever changed the way I write code.](https://www.youtube.com/watch?v=DzNmUNvnB04)
+  - [dreamsofcode-io/tmux/blob/main/tmux.conf](https://github.com/dreamsofcode-io/tmux/blob/main/tmux.conf)
 - [TMUX in 100 seconds | Prime Reacts](https://www.youtube.com/watch?v=0eHZRPzbiJ0)
