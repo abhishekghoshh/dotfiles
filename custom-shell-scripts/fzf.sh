@@ -8,7 +8,8 @@
 export FZF_DEFAULT_OPTS='--color=fg:#cdd6f4,bg:#1e1e2e,fg+:#cdd6f4,bg+:#313244,hl:#f38ba8,hl+:#f38ba8,pointer:#f5c2e7,marker:#f5c2e7,info:#b4befe,prompt:#f5c2e7,spinner:#f5c2e7,header:#89b4fa'
 
 o(){
-  files=$(fzf -m \
+  clear
+  nvim $(fzf -m \
     --preview="bat --color=always {}" \
     --preview-window=right:65% \
     --height=100% \
@@ -16,7 +17,7 @@ o(){
     --border=rounded \
     --info=inline \
     --style full)
-  [ -n "$files" ] && nvim $files
+  [ -n "$files" ]
 }
 
 # Bind Ctrl+O to run o() in supported shells (bash/zsh)
@@ -27,6 +28,7 @@ elif [[ -n $BASH_VERSION ]]; then
 fi
 
 zz() {
+  clear
   local dir
   dir=$(zoxide query -l | fzf \
     --preview="lsd -alh --color=always {}" \
