@@ -1,7 +1,7 @@
 services:
   dotfiles:
-    container_name: dotfiles
-    image: abhishek1009/dotfiles:latest
+    container_name: dotfiles-docs
+    image: abhishek1009/dotfiles-docs:latest
     build:
       context: .
       dockerfile: Dockerfile.docs
@@ -16,5 +16,5 @@ services:
       context: . 
       dockerfile: Dockerfile.sandbox
     command: sleep infinity
-    volumes:
-      - ./nvim:/root/.config/nvim
+    # volumes:
+    #   - ./nvim:/root/.config/nvim

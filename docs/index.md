@@ -14,17 +14,13 @@
 ### Essential
 - git
 - language: lua, gcc, g++, go, python3.13, java, node, go, rust, zig
+- terminal tools: ohmyzsh, powerlevel10k, lsd, fuzzyfinder, bat, zoxide
 
 
 ### zsh
 A powerful and customizable shell that enhances productivity with features like advanced tab completion, improved globbing, and plugin support (via frameworks like Oh My Zsh).
 
-#### Other tools
-- Oh My Zsh
-- powerlevel10k
-- lsd
-- fuzzyfinder
-- zoxide
+
 
 ### Alacritty + TMUX
 Terminal emulator combined with terminal multiplexing for efficient workflow.

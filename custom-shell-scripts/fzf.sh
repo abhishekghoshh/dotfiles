@@ -11,7 +11,7 @@ o(){
   clear
   nvim $(fzf -m \
     --preview="bat --color=always {}" \
-    --preview-window=right:65% \
+    --preview-window=right:50% \
     --height=100% \
     --layout=reverse \
     --border=rounded \
@@ -32,7 +32,7 @@ zz() {
   local dir
   dir=$(zoxide query -l | fzf \
     --preview="lsd -alh --color=always {}" \
-    --preview-window=right:65% \
+    --preview-window=right:50% \
     --height=100% \
     --layout=reverse \
     --border=rounded \

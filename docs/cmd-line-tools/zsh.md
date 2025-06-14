@@ -6,9 +6,6 @@
 ### Setup ZSH with oh-my-zsh, fonts, suggestions and powerlevel10k
 
 ```zsh
-# Install oh my zsh using curl
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
 # Install it using package manager
 sudo apt install zsh
 
