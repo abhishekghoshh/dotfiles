@@ -16,5 +16,17 @@ services:
       context: . 
       dockerfile: Dockerfile.sandbox
     command: sleep infinity
-    # volumes:
-    #   - ./nvim:/root/.config/nvim
+  dev:
+    container_name: dev
+    image: abhishek1009/dev:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: sleep infinity
+    depends_on:
+      - sandbox
+    ports:
+      - "8080:8080"
+      - "3000:3000"
+      - "5000:5000"
+      - "8001:8001"
