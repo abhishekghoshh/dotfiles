@@ -23,9 +23,22 @@ fi
 # Function to link dotfiles
 link_dotfiles() {
     echo "Linking dotfiles..."
-    ln -sf "$DOTFILES/nvim" "$HOME/.config/nvim"
-    ln -sf "$DOTFILES/tmux/.tmux.conf" "$HOME/.tmux.conf"
-    ln -sf "$DOTFILES/.config/alacritty" "$HOME/.config/alacritty"
+    if [ ! -e "$HOME/.config/nvim" ]; then
+        ln -sf "$DOTFILES/nvim" "$HOME/.config/nvim"
+    else
+        echo "$HOME/.config/nvim already exists. Skipping link."
+    fi
+    if [ ! -e "$HOME/.tmux.conf" ]; then
+        ln -sf "$DOTFILES/tmux/.tmux.conf" "$HOME/.tmux.conf"
+    else
+        echo "$HOME/.tmux.conf already exists. Skipping link."
+    fi
+
+    if [ ! -e "$HOME/.config/alacritty" ]; then
+        ln -sf "$DOTFILES/.config/alacritty" "$HOME/.config/alacritty"
+    else
+        echo "$HOME/.config/alacritty already exists. Skipping link."
+    fi
 }
 # Function to link custom shell scripts
 link_custom_shell_scripts() {

@@ -2,7 +2,7 @@
 
 
 # This workflow builds and pushes a Docker image to Docker Hub
-name: Build and Push Docker Image
+name: Build and Push Sandbox Image
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the main branch
