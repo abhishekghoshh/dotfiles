@@ -16,12 +16,12 @@ services:
       context: . 
       dockerfile: Dockerfile.sandbox
     command: sleep infinity
-  dev:
-    container_name: dev
-    image: abhishek1009/dev:latest
+  dev-sandbox:
+    container_name: dev-sandbox
+    image: abhishek1009/dev-sandbox:latest
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile.dev-sandbox
     command: sleep infinity
     depends_on:
       - sandbox

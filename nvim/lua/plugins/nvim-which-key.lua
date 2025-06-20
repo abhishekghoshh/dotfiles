@@ -78,14 +78,21 @@ return {
       nowait = true,  -- use `nowait` when creating keymaps
     }
 
-    local mappings = {
-      ["k"] = { "<cmd>bdelete<CR>", "Kill Buffer" }, -- Close current file
-      ["p"] = { "<cmd>Lazy<CR>", "Plugin Manager" }, -- Invoking plugin manager
-      ["q"] = { "<cmd>wqall!<CR>", "Quit" },         -- Quit Neovim after saving the file
-      ["w"] = { "<cmd>w!<CR>", "Save" },             -- Save current file
-    }
+    -- local mappings = {
+    --   ["k"] = { "<cmd>bdelete<CR>", "Kill Buffer" }, -- Close current file
+    --   ["p"] = { "<cmd>Lazy<CR>", "Plugin Manager" }, -- Invoking plugin manager
+    --   ["q"] = { "<cmd>wqall!<CR>", "Quit" },         -- Quit Neovim after saving the file
+    --   ["w"] = { "<cmd>w!<CR>", "Save" },             -- Save current file
+    -- }
     local which_key = require("which-key")
     which_key.setup(setup)
-    which_key.register(mappings, opts)
+    local mapping = {
+      { "<leader>k", "<cmd>bdelete<CR>", desc = "Kill Buffer", nowait = true, remap = false },
+      { "<leader>p", "<cmd>Lazy<CR>", desc = "Plugin Manager", nowait = true, remap = false },
+      { "<leader>q", "<cmd>wqall!<CR>", desc = "Quit", nowait = true, remap = false },
+      { "<leader>w", "<cmd>w!<CR>", desc = "Save", nowait = true, remap = false },
+    }
+    which_key.add(mapping)
+    -- which_key.register(mapping, opts)
   end
 }

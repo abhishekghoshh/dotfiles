@@ -39,6 +39,12 @@ link_dotfiles() {
     else
         echo "$HOME/.config/alacritty already exists. Skipping link."
     fi
+
+    if [ ! -e "$HOME/.aerospace.toml" ]; then
+        ln -sf "$DOTFILES/aerospace/.aerospace.toml" "$HOME/.aerospace.toml"
+    else
+        echo "$HOME/.aerospace.toml already exists. Skipping link."
+    fi
 }
 # Function to link custom shell scripts
 link_custom_shell_scripts() {

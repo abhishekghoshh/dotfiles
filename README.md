@@ -15,7 +15,7 @@
 
 
 ## Need to install 
-```
+```zsh
 git (gh, gh-dash)
 zsh(oh-my-zsh + powerlevel10k + plugins)
 zoxide
@@ -29,10 +29,11 @@ rainfrog(db tool)
 lua, gcc, go, rust, java, scala, node, npm
 
 hyperland
-Aerospace
+Aerospace -> Tiling window manager
 startship
-Raycast
+Raycast -> Your shortcut to everything
 
+ranger -> A Terminal file manager
 Yazi - Terminal file explorer (Check it surely)
 
 kitty zathura zellij
@@ -57,7 +58,7 @@ docker run --rm -it --name sandbox ubuntu bash -c "apt-get update && apt-get upg
 
 
 ## Documentation using mkdocs
-```
+```zsh
 # install python, pip, libcairo2-dev or cairo
 
 pip install --upgrade pip
@@ -71,7 +72,7 @@ mkdocs serve
 ```
 
 ## Softwares and their open source replacements
-```
+```zsh
 Notion -> Appflowy https://github.com/AppFlowy-IO/AppFlowy
 Microsoft Office -> LibreOffice https://github.com/LibreOffice
 

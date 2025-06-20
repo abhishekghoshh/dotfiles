@@ -49,28 +49,38 @@ return {
       lazygit:toggle()
     end
 
-    local opts = {
-      mode = "n", -- NORMAL mode
-      prefix = "<leader>",
-      buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-      silent = true, -- use `silent` when creating keymaps
-      noremap = true, -- use `noremap` when creating keymaps
-      nowait = true, -- use `nowait` when creating keymaps
-    }
+    -- local opts = {
+    --   mode = "n", -- NORMAL mode
+    --   prefix = "<leader>",
+    --   buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+    --   silent = true, -- use `silent` when creating keymaps
+    --   noremap = true, -- use `noremap` when creating keymaps
+    --   nowait = true, -- use `nowait` when creating keymaps
+    -- }
 
-    local mappings = {
-      --Toggle Term
-      t = {
-        name = "Terminal",
-        g = { "<cmd>lua _LAZYGIT_TOGGLE()<cr>", "Node" },       -- Node Terminal
-        t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },          -- (Optional) Htop, If you have htop in linux
-        f = { "<cmd>ToggleTerm direction=float<cr>", "Float" }, -- Floating Terminal
+    -- local mappings = {
+    --   --Toggle Term
+    --   t = {
+    --     name = "Terminal",
+    --     g = { "<cmd>lua _LAZYGIT_TOGGLE()<cr>", "Node" },       -- Node Terminal
+    --     t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },          -- (Optional) Htop, If you have htop in linux
+    --     f = { "<cmd>ToggleTerm direction=float<cr>", "Float" }, -- Floating Terminal
 
-        -- Play with size according to your needs.
-        h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" }, -- Horizontal Terminal,
-        v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },    -- Vertical Terminal
-      },
+    --     -- Play with size according to your needs.
+    --     h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" }, -- Horizontal Terminal,
+    --     v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },    -- Vertical Terminal
+    --   },
+    -- }
+    -- require("which-key").register(mappings, opts)
+
+    local mappings ={
+      { "<leader>t", group = "Terminal", nowait = true, remap = false },
+      { "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", desc = "Float", nowait = true, remap = false },
+      { "<leader>tg", "<cmd>lua _LAZYGIT_TOGGLE()<cr>", desc = "Node", nowait = true, remap = false },
+      { "<leader>th", "<cmd>ToggleTerm size=10 direction=horizontal<cr>", desc = "Horizontal", nowait = true, remap = false },
+      { "<leader>tt", "<cmd>lua _HTOP_TOGGLE()<cr>", desc = "Htop", nowait = true, remap = false },
+      { "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>", desc = "Vertical", nowait = true, remap = false },
     }
-    require("which-key").register(mappings, opts)
+    require("which-key").add(mappings)
   end
 }
