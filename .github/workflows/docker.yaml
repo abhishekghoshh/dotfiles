@@ -43,7 +43,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: Dockerfile.dev
+          file: Dockerfile.dev-sandbox
           push: true
           tags: '${{ vars.DOCKERHUB_USERNAME }}/dev-sandbox:latest'
           cache-from: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:cache
