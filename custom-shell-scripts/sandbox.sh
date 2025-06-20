@@ -4,7 +4,7 @@ sandbox_temp() {
     rand_dir="sandbox-$(date +%s%N | sha256sum | head -c 8)"
     mkdir "$rand_dir"
     docker pull abhishek1009/sandbox:latest
-    docker run -it --rm -v "$PWD/$rand_dir":/workspace/sandbox:rw -w /workspace/sandbox abhishek1009/sandbox zsh
+    docker run -it --rm -v "$PWD/$rand_dir":/workspace/"$rand_dir":rw -w /workspace/"$rand_dir" abhishek1009/sandbox zsh
 }
 
 sandbox_curr() {
@@ -17,7 +17,7 @@ sandbox_temp_dev() {
     rand_dir="sandbox-$(date +%s%N | sha256sum | head -c 8)"
     mkdir "$rand_dir"
     docker pull abhishek1009/dev-sandbox:latest
-    docker run -it --rm -v "$PWD/$rand_dir":/workspace/dev-sandbox:rw -w /workspace/dev-sandbox abhishek1009/dev-sandbox zsh
+    docker run -it --rm -v "$PWD/$rand_dir":/workspace/"$rand_dir":rw -w /workspace/"$rand_dir" abhishek1009/dev-sandbox zsh
 }
 
 
