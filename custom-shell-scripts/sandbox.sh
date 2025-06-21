@@ -1,5 +1,10 @@
 #!/bin/bash
 
+sandbox_ephemeral() {
+    docker pull abhishek1009/sandbox:latest
+    docker run -it --rm abhishek1009/sandbox zsh
+}
+
 sandbox_temp() {
     rand_dir="sandbox-$(date +%s%N | sha256sum | head -c 8)"
     mkdir "$rand_dir"
@@ -11,6 +16,11 @@ sandbox_curr() {
     curr_dir_name="$(basename "$PWD")"
     docker pull abhishek1009/sandbox:latest
     docker run -it --rm -v "$PWD":/workspace/"$curr_dir_name":rw -w /workspace/"$curr_dir_name" abhishek1009/sandbox zsh
+}
+
+sandbox_ephemeral_dev() {
+    docker pull abhishek1009/dev-sandbox:latest
+    docker run -it --rm abhishek1009/dev-sandbox zsh
 }
 
 sandbox_temp_dev() {
@@ -31,6 +41,8 @@ sandbox_curr_dev() {
 # create a fuzzy finder with 4 options: sandbox, sandbox_curr, sandbox_temp_dev, sandbox_curr_dev
 sandbox() {
   declare -a options=(
+    "Ephemeral Sandbox environment"
+    "Ephemeral Dev Sandbox environment"
     "Sandbox environment with new temporary directory"
     "Sandbox environment in the current directory"
     "Dev Sandbox environment with new temporary directory"
@@ -39,6 +51,14 @@ sandbox() {
 
   preview_cmd='
     case {} in
+      "Ephemeral Sandbox environment")
+        echo "docker pull abhishek1009/sandbox:latest"
+        echo "docker run -it --rm abhishek1009/sandbox zsh"
+        ;;
+      "Ephemeral Dev Sandbox environment")
+        echo "docker pull abhishek1009/dev-sandbox:latest"
+        echo "docker run -it --rm abhishek1009/dev-sandbox zsh"
+        ;;
       "Sandbox environment with new temporary directory")
         rand_dir="sandbox-<random>"
         echo "docker pull abhishek1009/sandbox:latest"
@@ -74,6 +94,12 @@ sandbox() {
         --height=100% --layout=reverse --border=rounded --info=inline --style full)
 
   case $selected in
+    "Ephemeral Sandbox environment")
+      sandbox_ephemeral
+      ;;
+    "Ephemeral Dev Sandbox environment")
+      sandbox_ephemeral_dev
+      ;;
     "Sandbox environment with new temporary directory")
       sandbox_temp
       ;;
