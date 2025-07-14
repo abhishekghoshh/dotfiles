@@ -15,7 +15,7 @@ RUN apt-get update && \
     apt-get install -y git gcc lua5.4 neovim && \
     apt-get install -y curl wget unzip zsh sudo && \
     apt-get install -y bat lsd zoxide fontconfig fonts-powerline && \
-    apt-get install -y tmux && \
+    apt-get install -y tmux jq yq && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN chsh -s $(which zsh)

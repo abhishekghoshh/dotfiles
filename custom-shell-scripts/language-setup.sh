@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Python setup
-alias python=python3.13
-alias pip=pip3.13
+alias python=python3.10
+alias pip=pip3.10
 
 # Java setup
 

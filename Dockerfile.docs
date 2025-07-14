@@ -1,15 +1,16 @@
 # Use the official Python Alpine image as the base
 FROM python:3-alpine
 
-# Set environment variables
-ENV DOTFILES_DIR=/workspace/dotfiles \
-    MKDOCS_VERSION=1.6.1 \
-    PYTHONUNBUFFERED=1
-
 # Install required packages
 RUN apk add --no-cache \
     python3-dev py3-virtualenv \
     cairo-dev gcc musl-dev pkgconfig
+
+# Set environment variables
+ENV DOTFILES_DIR=/workspace/helper-docs \
+    MKDOCS_VERSION=1.6.1 \
+    PYTHONUNBUFFERED=1
+
 
 # Create the workspace directory
 RUN mkdir -p ${DOTFILES_DIR}

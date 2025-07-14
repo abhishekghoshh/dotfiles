@@ -35,7 +35,7 @@ link_dotfiles() {
     fi
 
     if [ ! -e "$HOME/.config/alacritty" ]; then
-        ln -sf "$DOTFILES/.config/alacritty" "$HOME/.config/alacritty"
+        ln -sf "$DOTFILES/alacritty/alacritty.toml" "$HOME/.config/alacritty/alacritty.toml"
     else
         echo "$HOME/.config/alacritty already exists. Skipping link."
     fi
