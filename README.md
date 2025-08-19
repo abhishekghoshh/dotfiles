@@ -1,7 +1,3 @@
-
-
-
-
 ## Youtube channels to follow
 
 - [typecraft](https://www.youtube.com/@typecraft_dev/videos)
@@ -38,24 +34,6 @@ Yazi - Terminal file explorer (Check it surely)
 
 kitty zathura zellij
 ```
-
-## install everything in your local system
-```
-# check the configurations once then run this
-git clone https://github.com/abhishekghoshh/dotfiles ~/.config/dotfiles &&
-  cd ~/.config/dotfiles && chmod +x installer.sh && ./installer.sh"
-```
-
-
-## To test the dotfiles inside container execute the following command
-```
-docker run --rm -it --name sandbox ubuntu bash -c "apt-get update && apt-get upgrade -y && 
-  apt-get install -y git &&
-  mkdir -p ~/.config/dotfiles &&
-  git clone https://github.com/abhishekghoshh/dotfiles ~/.config/dotfiles &&
-  cd ~/.config/dotfiles && chmod +x installer.sh && ./installer.sh"
-```
-
 
 ## Documentation using mkdocs
 ```zsh
