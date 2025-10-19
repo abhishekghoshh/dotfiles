@@ -1,6 +1,7 @@
 # vim motion cheatsheet
 
 ## Cursor Movement
+
 | Command              | Description                                         |
 |----------------------|----------------------------------------------------|
 | `h`                  | Move cursor left                                   |
@@ -18,111 +19,132 @@
 | `)` (`Shift+0`)      | Move cursor to the start of the next sentence      |
 | `ESC`                | Terminate insert mode                              |
 
+## Additional Motion Shortcuts
+
+| Shortcut                        | Description                                                                                   |
+|----------------------------------|-----------------------------------------------------------------------------------------------|
+| `Shift + Left Arrow`             | Move to the start of the previous word                                                        |
+| `Shift + Right Arrow`            | Move to the start of the next word                                                            |
+| `Shift + Down Arrow`             | Go to the ending line of the current page                                                     |
+| `Shift + Up Arrow`               | Go to the starting line of the current page                                                   |
+| `(` or `Shift + 9`               | Jump to the start of the previous sentence                                                    |
+| `)` or `Shift + 0`               | Jump to the start of the next sentence                                                        |
+| `}` or `Shift + ]`               | Jump to the start of the next paragraph (next empty line)                                     |
+| `{` or `Shift + [`               | Jump to the start of the previous paragraph (previous empty line)                             |
+| `[`                              | Go to the start of the first line                                                             |
+| `]`                              | Go to the start of the last line                                                              |
+| `Ctrl + b`                       | Move a page up (back)                                                                         |
+| `Ctrl + f`                       | Move a page down (front)                                                                      |
+| `Ctrl + u`                       | Move half a page up                                                                           |
+| `Ctrl + d`                       | Move half a page down                                                                         |
+| `%`                              | Jump to the matching parenthesis, bracket, or brace (useful for navigating code blocks)       |
+
 ## Editing
+
 | Command              | Description                                         |
 |----------------------|----------------------------------------------------|
 | `d`                  | Delete (used with motions, e.g., `dw` to delete word) |
 | `dd`                 | Delete current line                                |
 | `3dd`                | Delete 3 lines                                     |
 | `D`                  | Delete contents of line after the cursor           |
-| `C`                  | Delete contents of a line after the cursor and insert new text. Press ESC to end insertion. |
-| `dw`                 | Delete word                                        |
-| `4dw`                | Delete 4 words                                     |
-| `cw`                 | Change word                                        |
-| `x`                  | Delete character under cursor                      |
-| `r`                  | Replace character                                  |
-| `R`                  | Overwrite characters from cursor onward            |
-| `s`                  | Substitute one character under cursor and continue to insert |
-| `S`                  | Substitute entire line and begin to insert at the beginning of the line |
-| `~`                  | Change case of individual character                |
-| `y`                  | Yank (copy, used with motions, e.g., `yw` to yank word) |
-| `p`                  | Paste after cursor                                 |
-| `P`                  | Paste before cursor (or after the current word)    |
-| `u`                  | Undo last change                                   |
-| `U`                  | Undo all changes to the entire line                |
-| `Ctrl+r`             | Redo last undone change                            |
+| `(Shift + j)`        | Remove empty lines and append the start of the next line to the end of the current line          |
+| `C`                  | Delete contents of a line after the cursor and insert new text. Press ESC to end insertion.      |
+| `dw`                 | Delete word                                                                                      |
+| `4dw`                | Delete 4 words                                                                                   |
+| `cw`                 | Change word                                                                                      |
+| `x`                  | Delete character under cursor                                                                    |
+| `r`                  | Replace character                                                                               |
+| `R`                  | Overwrite characters from cursor onward                                                          |
+| `s`                  | Substitute one character under cursor and continue to insert                                     |
+| `S`                  | Substitute entire line and begin to insert at the beginning of the line                          |
+| `~`                  | Change case of individual character                                                              |
+| `y`                  | Yank (copy, used with motions, e.g., `yw` to yank word)                                          |
+| `p`                  | Paste after cursor                                                                               |
+| `P`                  | Paste before cursor (or after the current word)                                                  |
+| `u`                  | Undo last change                                                                                 |
+| `U`                  | Undo all changes to the entire line                                                              |
+| `Ctrl+r`             | Redo last undone change                                                                          |
 
 ## Insert & Visual Modes
-| Command              | Description                                         |
-|----------------------|----------------------------------------------------|
-| `i`                  | Insert at cursor (enter insert mode)               |
-| `a`                  | Write after cursor (enter insert mode)             |
-| `A`                  | Write at the end of line (enter insert mode)       |
-| `o`                  | Open a new line below (enter insert mode)          |
-| `v`                  | Visual mode (select text)                          |
+
+| Command                                   | Description                                                                                           |
+|--------------------------------------------|-------------------------------------------------------------------------------------------------------|
+| `i`                                       | Insert at cursor (enter insert mode)                                                                  |
+| `a`                                       | Insert after cursor (enter insert mode)                                                               |
+| `A`                                       | Insert at the end of line (enter insert mode)                                                         |
+| `o`                                       | Open a new line below and enter insert mode                                                           |
+| `v`                                       | Enter visual mode (select text)                                                                       |
+| `v 10j` → `I var`                         | Select 10 lines, insert `var` at the start of each line                                               |
+| `v 10j` → `A var;`                        | Select 10 lines, append `var;` at the end of each line                                                |
+| `Ctrl+v` `5l` `10j` `Shift+I`              | Block select 5 columns across 10 lines, insert text at start, press ESC to apply to all lines         |
+| `Ctrl+v` `5l` `10j` `Shift+A`              | Block select 5 columns across 10 lines, append text at end, press ESC to apply to all lines           |
+| `Ctrl+v` `$` `10j` `Shift+A`               | Block select to end of line across 10 lines, append text, press ESC to apply to all lines             |
+| `>` (in visual mode)                       | Indent selected lines to the right                                                                    |
+| `<` (in visual mode)                       | Unindent selected lines to the left                                                                   |
+| `Shift+o` (in visual mode)                 | Change selection direction to include the first line when selecting lines                             |
+
+## Indentation
+
+| Command      | Description                                                                                       |
+|--------------|---------------------------------------------------------------------------------------------------|
+| `>>`         | Indent the current line                                                                           |
+| `4>>`        | Indent the next four lines                                                                        |
+| `>3j`        | Indent the current line and the next three lines (from this line to three lines down)             |
+| `>}`         | Indent all lines until the end of the paragraph (up to the first empty line, see `:help object-motions`) |
+| `>ap`        | Indent all lines in the current paragraph                                                         |
 
 
+## Commenting
+
+| Action                      | Command / Plugin Example                | Description                                 |
+|-----------------------------|-----------------------------------------|---------------------------------------------|
+| Comment out a single line   | `gcc` (with [vim-commentary](https://github.com/tpope/vim-commentary) or [Comment.nvim](https://github.com/numToStr/Comment.nvim)) | Comment or uncomment the current line       |
+| Comment out selected lines  | `gc` in visual mode (with plugin)       | Comment or uncomment the selected lines     |
+
+## Finding and Replacing
+
+| Action                                 | Command / Steps                                 | Description                                                                                   |
+|-----------------------------------------|-------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| Find a word under cursor                | `*`                                             | Search for the next occurrence of the word under the cursor                                   |
+| Find previous occurrence                | `#`                                             | Search for the previous occurrence of the word under the cursor                               |
+| Find a specific word                    | `/word`                                         | Search forward for "word"                                                                     |
+| Find and replace all occurrences        | `:%s/old/new/g`                                 | Replace all occurrences of "old" with "new" in the entire file                                |
+| Find and replace in current line        | `:s/old/new/g`                                  | Replace all occurrences of "old" with "new" in the current line                               |
+| Find and replace with confirmation      | `:%s/old/new/gc`                                | Replace all occurrences with confirmation (prompt before each replacement)                     |
+| Find and replace one by one             | `:s/old/new/c`                                  | Replace with confirmation in the current line (prompt for each occurrence)                    |
+| Find and replace in selection (visual)  | Select text, then `:s/old/new/g`                | Replace all occurrences in the visually selected lines                                        |
+| Repeat last search                      | `n`                                             | Move to the next occurrence of the last search                                                |
+| Repeat last search in opposite direction| `N`                                             | Move to the previous occurrence of the last search                                            |
 
 
+## Line Numbers
 
+| Command        | Description                                 |
+|----------------|---------------------------------------------|
+| `:set nu`      | Enable absolute line numbers                |
+| `:set nu!`     | Toggle absolute line numbers                |
+| `:set rnu`     | Enable relative line numbers                |
+| `:set nornu`   | Disable relative line numbers               |
 
-## Things to remember
-1. toggle the relative line number, when you want to jump directly to next or previous lines
-   1. **in nvchad**
-      1. :set rnu
-      2. :set nornu
-2. Mapping esc to any other key ( caps lock)
-3. :normal  (normal mode) change multiple line in the same time
-   1. (v 10j) -> :normal Ivar [first select 10 consecutive lines and then insert var at the start]
-   2. (v 10j) -> :normal A end; [first select 10 consecutive lines and then append end; at the end]
-4. change multiple line in the same time ( from the middle of sentence or at the end )
-   1. go to the start of the word then (ctrl + v) then (5l + 10j) then (shift + I) to insert then type your text and press ESC to apply the changes for the next 10 lines
-   2. go to the start of the word then (ctrl + v) then (5l + 10j) then (shift + A) to Append then type your text and press ESC to apply the changes for the next 10 lines
-   3.**To append a text for the next lines** : (ctrl + v) then press (shift + 4) or $ to selct to the end of the line then use 10 j to select next 10 lines and then (shift + A) to Append and type your changes and press ESC to apply your changes for the next 10 lines.
-5. Sometime when we are selecting lines and we forgot the first line then we can use (ctrl + o) which will change the direction of the selecting and select the first line
-6. % to go to starting or ending of the parenthesis. We can use it to select the entire content inside those parenthesis, or also we can go to the function
+## Searching and Changing Words
 
+| Command         | Description                                                                                      |
+|-----------------|--------------------------------------------------------------------------------------------------|
+| `*`             | Search for the next occurrence of the word under the cursor                                      |
+| `n`             | Move to the next occurrence of the searched word                                                 |
+| `N` (`Shift+n`) | Move to the previous occurrence of the searched word                                             |
+| `ciw`           | Change inside word (delete the entire word and enter insert mode)                                |
+| `.`             | Repeat the last change (e.g., after `ciw`, use `.` to change the next occurrence in the same way) |
 
-(shift + j) => remove empty lines and append the start of the next line to the end of the current line 
+## Common Scenarios
 
-
-(shift + left arrow) go to the starting of the previous word
-(shift + right arrow) go to the starting of the next word
-
-(shift + down arrow) go the ending line of the current page
-(shift + up arrow) go the starting line of the current page
-
-
-#### Jump between lines
-Press ( or (shift + 9) to go to the start of previous line
-press ) or (shift + 0) to go to the start of next line
-
-
-#### Jump between paragraphs
-Press } or (shift + ] ) to go to the start of previous empty line
-Press { or (shift + [ ) to go to the start of next empty line
-
-
-Press [ to go to the start of the first line
-Press ] to go to the start of the last line
-
-
-
-ctrl + b to move a page screen back or "up"
-ctrl + f to move a page screen front or "down"
-ctrl + u to move a ½ page screen up.
-ctrl + d to move a ½ page screen down.
-
-
-Select a code block 
-click > for right shift
-click < for left shift
-
-If you are normal mode, with your cursor anywhere on the first line:
-
->> will indent that line,
-4>> will indent all four lines,
->3j will do the same thing in a different way (indent from this line to three lines down),
->} will indent all of the lines until the end of the paragraph (i.e. to the first empty line, see :help object-motions), and
->ap will indent all of the line
-
-
-hjkl -> left,down,up,right
-go to word in normal mode, and press * to go to next occurances of the word and we can use n and shift+n to go forward and backword for word occurance
-ciw to change in word,(delete the entire word) we can use . for to change the next occurance into same word
-
-
-#### Command Description	
-```
-
-
+| Scenario                                                                 | Command(s) / Steps                                   | Description                                                                                   |
+|--------------------------------------------------------------------------|------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| Cursor anywhere on the first line, want to move to the start of the line | `0`                                                  | Move cursor to the beginning of the current line                                              |
+| Cursor anywhere on the first line, want to move to the first non-blank   | `^`                                                  | Move cursor to the first non-empty character of the line                                      |
+| Cursor anywhere on the first line, want to move to the end of the line   | `$`                                                  | Move cursor to the end of the current line                                                    |
+| Cursor anywhere on the first line, want to delete the line               | `dd`                                                 | Delete the current line                                                                       |
+| Cursor anywhere on the first line, want to change the whole line         | `cc`                                                 | Change (replace) the entire line and enter insert mode                                        |
+| Cursor anywhere on the first line, want to yank (copy) the line          | `yy`                                                 | Yank (copy) the current line                                                                  |
+| Cursor anywhere on the first line, want to append text at end            | `A`                                                  | Move to end of line and enter insert mode                                                     |
+| Cursor anywhere on the first line, want to insert text at start          | `I`                                                  | Move to first non-blank character and enter insert mode                                       |
