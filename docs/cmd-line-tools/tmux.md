@@ -1,6 +1,7 @@
 # tmux configurations
 
 **tmux loads all the configs from the `~/.tmux.conf`**
+**If `~/.tmux.conf` is ineffective then try adding config in `~/.config/.tmux.conf`**
 
 ## Tmux Configuration
 
@@ -213,6 +214,10 @@ All the plugins are installed to ~/.tmux/plugins/ so alternatively you can find 
 - [Tmux has forever changed the way I write code.](https://www.youtube.com/watch?v=DzNmUNvnB04)
   - [dreamsofcode-io/tmux/blob/main/tmux.conf](https://github.com/dreamsofcode-io/tmux/blob/main/tmux.conf)
 - [TMUX in 100 seconds | Prime Reacts](https://www.youtube.com/watch?v=0eHZRPzbiJ0)
+- [configure your tmux.](https://www.youtube.com/watch?v=wpODsyBHxH0)
+- [typecraft](https://www.youtube.com/@typecraft_dev/playlists)
+  - [TMUX and Terminal configuration](https://www.youtube.com/playlist?list=PLsz00TDipIfct4F3pHv6_uI9OyjphQEGZ)
+  - [Tmux for Newbs. FREE TMUX COURSE](https://www.youtube.com/playlist?list=PLsz00TDipIfdrJDjpULKY7mQlIFi4HjdR)
 - [tmux plugins]()
   - [tmux-sessionizer](https://github.com/edr3x/tmux-sessionizer)
   - [erikw/tmux-powerline](https://github.com/erikw/tmux-powerline)

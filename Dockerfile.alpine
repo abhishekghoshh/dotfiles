@@ -1,0 +1,57 @@
+FROM alpine:latest
+
+# Install git, curl, bash, and neovim
+RUN apk add --no-cache \
+    git \
+    curl \
+    bash \
+    neovim \
+    gcc \
+    g++ \
+    cairo-dev \
+    musl-dev \
+    build-base \
+    readline-dev \
+    ncurses-dev \
+    zlib-dev \
+    make \
+    lua5.4 \
+    jq \
+    yq \
+    zsh \
+    sudo \
+    wget \
+    unzip \
+    bat \
+    lsd \
+    zoxide \
+    fontconfig \
+    fzf
+
+# Create workspace and set as working directory
+WORKDIR /workspace
+
+ENV DOTFILES=/workspace/dotfiles
+
+# create a dotfiles directory
+RUN mkdir -p /workspace/dotfiles
+
+# copy . ./
+COPY . /workspace/dotfiles
+
+RUN chmod +x /workspace/dotfiles/installer.sh
+
+# run the installer script
+# RUN /workspace/dotfiles/installer.sh
+
+# Make the script executable
+RUN chmod +x /workspace/dotfiles/scripts/typing-practice.sh
+
+# Run the script during the image build
+RUN /workspace/dotfiles/scripts/typing-practice.sh
+
+# set the default shell to zsh
+SHELL ["/bin/zsh", "-c"]
+
+# set the default command to zsh
+CMD ["zsh"]

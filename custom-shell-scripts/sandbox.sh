@@ -1,85 +1,122 @@
 #!/bin/bash
 
-sandbox_ephemeral() {
-    docker pull abhishek1009/sandbox:latest
-    docker run -it --rm abhishek1009/sandbox zsh
+
+alpine_ephemeral() {
+    docker pull abhishek1009/alpine:latest
+    docker run -it --rm abhishek1009/alpine sh
 }
 
-sandbox_temp() {
+alpine_temp() {
     rand_dir="sandbox-$(date +%s%N | sha256sum | head -c 8)"
     mkdir "$rand_dir"
-    docker pull abhishek1009/sandbox:latest
-    docker run -it --rm -v "$PWD/$rand_dir":/workspace/"$rand_dir":rw -w /workspace/"$rand_dir" abhishek1009/sandbox zsh
+    docker pull abhishek1009/alpine:latest
+    docker run -it --rm -v "$PWD/$rand_dir":/workspace/"$rand_dir":rw -w /workspace/"$rand_dir" abhishek1009/alpine sh
 }
 
-sandbox_curr() {
+alpine_curr() {
     curr_dir_name="$(basename "$PWD")"
-    docker pull abhishek1009/sandbox:latest
-    docker run -it --rm -v "$PWD":/workspace/"$curr_dir_name":rw -w /workspace/"$curr_dir_name" abhishek1009/sandbox zsh
+    docker pull abhishek1009/alpine:latest
+    docker run -it --rm -v "$PWD":/workspace/"$curr_dir_name":rw -w /workspace/"$curr_dir_name" abhishek1009/alpine sh
 }
 
-sandbox_ephemeral_dev() {
-    docker pull abhishek1009/dev-sandbox:latest
-    docker run -it --rm abhishek1009/dev-sandbox zsh
+ubuntu_ephemeral() {
+    docker pull abhishek1009/ubuntu:latest
+    docker run -it --rm abhishek1009/ubuntu zsh
 }
 
-sandbox_temp_dev() {
+ubuntu_temp() {
     rand_dir="sandbox-$(date +%s%N | sha256sum | head -c 8)"
     mkdir "$rand_dir"
-    docker pull abhishek1009/dev-sandbox:latest
-    docker run -it --rm -v "$PWD/$rand_dir":/workspace/"$rand_dir":rw -w /workspace/"$rand_dir" abhishek1009/dev-sandbox zsh
+    docker pull abhishek1009/ubuntu:latest
+    docker run -it --rm -v "$PWD/$rand_dir":/workspace/"$rand_dir":rw -w /workspace/"$rand_dir" abhishek1009/ubuntu zsh
+}
+
+ubuntu_curr() {
+    curr_dir_name="$(basename "$PWD")"
+    docker pull abhishek1009/ubuntu:latest
+    docker run -it --rm -v "$PWD":/workspace/"$curr_dir_name":rw -w /workspace/"$curr_dir_name" abhishek1009/ubuntu zsh
+}
+
+dev_ephemeral() {
+    docker pull abhishek1009/dev:latest
+    docker run -it --rm abhishek1009/dev zsh
+}
+
+dev_temp() {
+    rand_dir="sandbox-$(date +%s%N | sha256sum | head -c 8)"
+    mkdir "$rand_dir"
+    docker pull abhishek1009/dev:latest
+    docker run -it --rm -v "$PWD/$rand_dir":/workspace/"$rand_dir":rw -w /workspace/"$rand_dir" abhishek1009/dev zsh
 }
 
 
 
-sandbox_curr_dev() {
+dev_curr() {
     curr_dir_name="$(basename "$PWD")"
-    docker pull abhishek1009/dev-sandbox:latest
-    docker run -it --rm -v "$PWD":/workspace/"$curr_dir_name":rw -w /workspace/"$curr_dir_name" abhishek1009/dev-sandbox zsh
+    docker pull abhishek1009/dev:latest
+    docker run -it --rm -v "$PWD":/workspace/"$curr_dir_name":rw -w /workspace/"$curr_dir_name" abhishek1009/dev  zsh
 }
 
 # create a fuzzy finder with 4 options: sandbox, sandbox_curr, sandbox_temp_dev, sandbox_curr_dev
 sandbox() {
   declare -a options=(
-    "Ephemeral Sandbox environment"
-    "Ephemeral Dev Sandbox environment"
-    "Sandbox environment with new temporary directory"
-    "Sandbox environment in the current directory"
-    "Dev Sandbox environment with new temporary directory"
-    "Dev Sandbox environment in the current directory"
+    "Ephemeral Alpine environment"
+    "Alpine environment with new temporary directory"
+    "Alpine environment in the current directory"
+    "Ephemeral Ubuntu environment"
+    "Ubuntu environment with new temporary directory"
+    "Ubuntu environment in the current directory"
+    "Ephemeral Dev environment"
+    "Dev environment with new temporary directory"
+    "Dev environment in the current directory"
   )
 
   preview_cmd='
     case {} in
-      "Ephemeral Sandbox environment")
-        echo "docker pull abhishek1009/sandbox:latest"
-        echo "docker run -it --rm abhishek1009/sandbox zsh"
+      "Ephemeral Alpine environment")
+        echo "docker pull abhishek1009/alpine:latest"
+        echo "docker run -it --rm abhishek1009/alpine sh"
         ;;
-      "Ephemeral Dev Sandbox environment")
-        echo "docker pull abhishek1009/dev-sandbox:latest"
-        echo "docker run -it --rm abhishek1009/dev-sandbox zsh"
-        ;;
-      "Sandbox environment with new temporary directory")
+      "Alpine environment with new temporary directory")
         rand_dir="sandbox-<random>"
-        echo "docker pull abhishek1009/sandbox:latest"
+        echo "docker pull abhishek1009/alpine:latest"
         echo "mkdir \"\$PWD/\$rand_dir\""
-        echo "docker run -it --rm -v \"\$PWD/\$rand_dir\":/workspace/sandbox:rw -w /workspace/sandbox abhishek1009/sandbox zsh"
+        echo "docker run -it --rm -v \"\$PWD/\$rand_dir\":/workspace/\"\$rand_dir\":rw -w /workspace/\"\$rand_dir\" abhishek1009/alpine sh"
         ;;
-      "Sandbox environment in the current directory")
+      "Alpine environment in the current directory")
         curr_dir_name="$(basename \"$PWD\")"
-        echo "docker pull abhishek1009/sandbox:latest"
-        echo "docker run -it --rm -v \"\$PWD\":/workspace/\"\$curr_dir_name\":rw -w /workspace/\"\$curr_dir_name\" abhishek1009/sandbox zsh"
+        echo "docker pull abhishek1009/alpine:latest"
+        echo "docker run -it --rm -v \"\$PWD\":/workspace/\"\$curr_dir_name\":rw -w /workspace/\"\$curr_dir_name\" abhishek1009/alpine sh"
         ;;
-      "Dev Sandbox environment with new temporary directory")
+      "Ephemeral Ubuntu environment")
+        echo "docker pull abhishek1009/ubuntu:latest"
+        echo "docker run -it --rm abhishek1009/ubuntu zsh"
+        ;;
+      "Ubuntu environment with new temporary directory")
         rand_dir="sandbox-<random>"
-        echo "docker pull abhishek1009/dev-sandbox:latest"
+        echo "docker pull abhishek1009/ubuntu:latest"
         echo "mkdir \"\$PWD/\$rand_dir\""
-        echo "docker run -it --rm -v \"\$PWD/\$rand_dir\":/workspace/dev-sandbox:rw -w /workspace/dev-sandbox abhishek1009/dev-sandbox zsh"
+        echo "docker run -it --rm -v \"\$PWD/\$rand_dir\":/workspace/ubuntu:rw -w /workspace/ubuntu abhishek1009/ubuntu zsh"
         ;;
-      "Dev Sandbox environment in the current directory")
+      "Ubuntu environment in the current directory")
         curr_dir_name="$(basename \"$PWD\")"
-        echo "docker pull abhishek1009/dev-sandbox:latest"
-        echo "docker run -it --rm -v \"\$PWD\":/workspace/\"\$curr_dir_name\":rw -w /workspace/\"\$curr_dir_name\" abhishek1009/dev-sandbox zsh"
+        echo "docker pull abhishek1009/ubuntu:latest"
+        echo "docker run -it --rm -v \"\$PWD\":/workspace/\"\$curr_dir_name\":rw -w /workspace/\"\$curr_dir_name\" abhishek1009/ubuntu zsh"
+        ;;
+      "Ephemeral Dev environment")
+        echo "docker pull abhishek1009/dev:latest"
+        echo "docker run -it --rm abhishek1009/dev zsh"
+        ;;
+      "Dev environment with new temporary directory")
+        rand_dir="sandbox-<random>"
+        echo "docker pull abhishek1009/dev:latest"
+        echo "mkdir \"\$PWD/\$rand_dir\""
+        echo "docker run -it --rm -v \"\$PWD/\$rand_dir\":/workspace/dev:rw -w /workspace/dev abhishek1009/dev zsh"
+        ;;
+      "Dev environment in the current directory")
+        curr_dir_name="$(basename \"$PWD\")"
+        echo "docker pull abhishek1009/dev:latest"
+        echo "docker run -it --rm -v \"\$PWD\":/workspace/\"\$curr_dir_name\":rw -w /workspace/\"\$curr_dir_name\" abhishek1009/dev zsh"
         ;;
       *)
         echo "No command"
@@ -94,23 +131,32 @@ sandbox() {
         --height=100% --layout=reverse --border=rounded --info=inline --style full)
 
   case $selected in
-    "Ephemeral Sandbox environment")
-      sandbox_ephemeral
+    "Ephemeral Alpine environment")
+      alpine_ephemeral
       ;;
-    "Ephemeral Dev Sandbox environment")
-      sandbox_ephemeral_dev
+    "Alpine environment with new temporary directory")
+      alpine_temp
       ;;
-    "Sandbox environment with new temporary directory")
-      sandbox_temp
+    "Alpine environment in the current directory")
+      alpine_curr
       ;;
-    "Sandbox environment in the current directory")
-      sandbox_curr
+    "Ephemeral Ubuntu environment")
+      ubuntu_ephemeral
       ;;
-    "Dev Sandbox environment with new temporary directory")
-      sandbox_temp_dev
+    "Ubuntu environment with new temporary directory")
+      ubuntu_temp
       ;;
-    "Dev Sandbox environment in the current directory")
-      sandbox_curr_dev
+    "Ubuntu environment in the current directory")
+      ubuntu_curr
+      ;;
+    "Ephemeral Dev environment")
+      dev_ephemeral
+      ;;
+    "Dev environment with new temporary directory")
+      dev_temp
+      ;;
+    "Dev environment in the current directory")
+      dev_curr
       ;;
     *)
       echo "Invalid selection"

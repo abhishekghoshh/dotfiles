@@ -9,24 +9,31 @@ services:
       - "8000:8000"
     volumes:
       - ./:/home/abhishek/workspace/dotfiles
-  sandbox:
-    container_name: sandbox
-    image: abhishek1009/sandbox:latest
+  ubuntu:
+    container_name: ubuntu
+    image: abhishek1009/ubuntu:latest
     build:
       context: . 
-      dockerfile: Dockerfile.sandbox
+      dockerfile: Dockerfile.ubuntu
     command: sleep infinity
-  dev-sandbox:
-    container_name: dev-sandbox
-    image: abhishek1009/dev-sandbox:latest
+  dev:
+    container_name: dev
+    image: abhishek1009/dev:latest
     build:
       context: .
-      dockerfile: Dockerfile.dev-sandbox
+      dockerfile: Dockerfile.dev
     command: sleep infinity
     depends_on:
-      - sandbox
+      - ubuntu
     ports:
       - "8080:8080"
       - "3000:3000"
       - "5000:5000"
       - "8001:8001"
+  alpine-sandbox:
+    container_name: alpine-sandbox
+    image: abhishek1009/alpine-sandbox:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.alpine
+    command: sleep infinity
