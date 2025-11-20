@@ -145,6 +145,12 @@ Go to this [.tmux.conf](https://github.com/abhishekghoshh/dotfiles/blob/master/t
 
 # Kill current session
     :kill-session
+
+# Kill a session from all sessions(Using the choose-tree interface)
+    <leader> s (for session list, which also shows windows)
+    Press x to mark the window for killing.
+    Press y to confirm and kill the window.
+    You can also tag multiple windows with t and kill them all at once with X
 ```
 
 
