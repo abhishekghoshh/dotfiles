@@ -1,8 +1,9 @@
-
+# Typing Helper
 
 
 
 ## typing speed checker websites
+
 - [typing-lessons](http://www.typing-lessons.org/preliminaries_4.html)
 - [typingclub](https://www.typingclub.com)
 - [monkeytype](https://monkeytype.com/)
@@ -23,13 +24,8 @@ ctrl + backspace for others
 cmd + backspace for mac
 
 
-```
-
-
-```
 # finger rest at the position
 left hand at asdf
 right hand jkl;
 two thumbs at the space bar
-
 ```
