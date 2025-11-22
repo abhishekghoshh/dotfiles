@@ -1,5 +1,5 @@
 services:
-  dotfiles:
+  dotfiles-docs:
     container_name: dotfiles-docs
     image: abhishek1009/dotfiles-docs:latest
     build:
@@ -12,9 +12,16 @@ services:
   ubuntu:
     container_name: ubuntu
     image: abhishek1009/ubuntu:latest
+    # build:
+    #   context: . 
+    #   dockerfile: Dockerfile.ubuntu
+    command: sleep infinity
+  alpine:
+    container_name: alpine
+    image: abhishek1009/alpine:latest
     build:
-      context: . 
-      dockerfile: Dockerfile.ubuntu
+      context: .
+      dockerfile: Dockerfile.alpine
     command: sleep infinity
   dev:
     container_name: dev
@@ -30,10 +37,3 @@ services:
       - "3000:3000"
       - "5000:5000"
       - "8001:8001"
-  alpine-sandbox:
-    container_name: alpine-sandbox
-    image: abhishek1009/alpine-sandbox:latest
-    build:
-      context: .
-      dockerfile: Dockerfile.alpine
-    command: sleep infinity

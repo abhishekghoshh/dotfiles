@@ -30,6 +30,16 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      - name: Build and push Docker image for alpine
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.alpine
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: '${{ vars.DOCKERHUB_USERNAME }}/alpine:latest'
+          cache-from: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/alpine:cache
+          cache-to: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/alpine:cache,mode=max
       - name: Build and push Docker image for ubuntu
         uses: docker/build-push-action@v6
         with:
@@ -50,28 +60,55 @@ jobs:
           tags: '${{ vars.DOCKERHUB_USERNAME }}/dev:latest'
           cache-from: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/dev:cache
           cache-to: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/dev:cache,mode=max
-      - name: Build and push Docker image for alpine
+      - name: Build and push Docker image for java
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: Dockerfile.alpine
+          file: Dockerfile.java
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: '${{ vars.DOCKERHUB_USERNAME }}/alpine:latest'
-          cache-from: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/alpine:cache
-          cache-to: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/alpine:cache,mode=max
+          tags: '${{ vars.DOCKERHUB_USERNAME }}/java:latest'
+          cache-from: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/java:cache
+          cache-to: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/java:cache,mode=max
+      - name: Build and push Docker image for python
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.python
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: '${{ vars.DOCKERHUB_USERNAME }}/python:latest'
+          cache-from: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/python:cache
+          cache-to: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/python:cache,mode=max
+      - name: Build and push Docker image for golang
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.golang
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: '${{ vars.DOCKERHUB_USERNAME }}/golang:latest'
+          cache-from: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/golang:cache
+          cache-to: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/golang:cache,mode=max
+      - name: Build and push Docker image for js
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.js
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: '${{ vars.DOCKERHUB_USERNAME }}/js:latest'
+          cache-from: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/js:cache
+          cache-to: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/js:cache,mode=max
+      - name: Build and push Docker image for rust
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.rust
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: '${{ vars.DOCKERHUB_USERNAME }}/rust:latest'  
+          cache-from: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/rust:cache
+          cache-to: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/rust:cache,mode=max
 
           
-  # We can also use this way to build and push the docker image
-  # publish_images:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: checkout
-  #       uses: actions/checkout@v4
-  #     - name: build image
-  #       run: |
-  #         docker build -t '${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:latest'
-  #     - name: push image to docker hub
-  #       run: |
-  #         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_HUB_TOKEN }}
-  #         docker push '${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:latest'

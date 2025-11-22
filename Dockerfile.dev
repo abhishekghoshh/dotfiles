@@ -1,38 +1,116 @@
-# Use the latest Ubuntu image as the base
 FROM abhishek1009/ubuntu:latest
 
-# Set non-interactive mode for APT
 ENV DEBIAN_FRONTEND=noninteractive
-# Update package lists and install required packages
-# install java21, python, nodejs, npm, golang, rust, zig, scala
-RUN apt-get update && apt-get upgrade -y && apt-get install -y \
-    software-properties-common \
-    curl \
-    && add-apt-repository ppa:deadsnakes/ppa \
-    && apt-get update && apt-get install -y \
-    openjdk-25-jdk \
-    python3 \
-    python3-pip \
-    python3.12-venv \
-    nodejs \
-    npm \
-    golang \
-    rustc \
-    scala \
-    maven \
-    gradle \
-    && curl -sSL https://install.python-poetry.org | python3 - \
+
+ARG PYTHON_VERSION=3.14
+ARG JAVA_VERSION=25
+ARG NODE_VERSION=25
+ARG RUST_VERSION=stable
+ARG ZIG_VERSION=0.16.0
+ARG MAVEN_VERSION=3.9.11
+ARG GRADLE_VERSION=9.2.1
+
+# 1. System Updates & Repositories
+# - ppa:deadsnakes/ppa -> For specific Python versions
+# - ppa:longsleep/golang-backports -> For LATEST Go (via apt-get)
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends software-properties-common && \
+    add-apt-repository ppa:deadsnakes/ppa -y && \
+    add-apt-repository ppa:longsleep/golang-backports -y && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+    # --- Languages via APT ---
+    openjdk-${JAVA_VERSION}-jdk \
+    python${PYTHON_VERSION} \
+    python${PYTHON_VERSION}-venv \
+    python${PYTHON_VERSION}-dev \
+    golang-go \
+    # --- Utilities ---
+    unzip \
+    xz-utils \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Add Poetry to PATH
-ENV PATH="/root/.local/bin:$PATH"
-# Set the default shell to zsh
-SHELL ["/bin/zsh", "-c"]
-# Set the default command to zsh
-CMD ["zsh"]
-# Set the working directory
-WORKDIR /workspace
+# 2. Setup Python (uv, Poetry, default python)
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python${PYTHON_VERSION} 1 && \
+    update-alternatives --install /usr/bin/python3 python3 /usr/bin/python${PYTHON_VERSION} 1
 
-# EXPOSE 8080-9090
-EXPOSE 5000-9000
+# Install uv (Fastest way is still copying the binary, or use curl | sh)
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
+# Install Poetry & Uvicorn System-Wide
+ENV PYTHONUNBUFFERED=1 UV_SYSTEM_PYTHON=1 POETRY_VIRTUALENVS_CREATE=false
+RUN uv pip install poetry uvicorn
+
+# 3. Setup Golang Environment
+# apt-get installs to /usr/lib/go or /usr/bin/go automatically.
+# We just need to configure the workspace.
+ENV GOPATH=/go
+ENV PATH=$GOPATH/bin:$PATH
+RUN mkdir -p "$GOPATH" && chmod -R 777 "$GOPATH"
+
+# 4. Setup Node.js (NVM + Global Symlinks)
+ENV NVM_DIR="/usr/local/nvm"
+RUN mkdir -p $NVM_DIR && \
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash && \
+    . "$HOME/.nvm/nvm.sh" && \
+    nvm install ${NODE_VERSION} && \
+    nvm alias default ${NODE_VERSION} && \
+    nvm use default && \
+    # Global Tools
+    npm install -g yarn pnpm vitest && \
+    # Symlinks for global access
+    NODE_BIN=$(dirname $(nvm which current)) && \
+    ln -s $NODE_BIN/node /usr/local/bin/node && \
+    ln -s $NODE_BIN/npm /usr/local/bin/npm && \
+    ln -s $NODE_BIN/npx /usr/local/bin/npx && \
+    ln -s $NODE_BIN/yarn /usr/local/bin/yarn && \
+    ln -s $NODE_BIN/pnpm /usr/local/bin/pnpm
+
+# 5. Setup Rust (Rustup Global)
+ENV RUSTUP_HOME=/usr/local/rustup CARGO_HOME=/usr/local/cargo PATH=/usr/local/cargo/bin:$PATH
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path --default-toolchain ${RUST_VERSION} && \
+    chmod -R 777 "$RUSTUP_HOME" "$CARGO_HOME" && \
+    rustup component add rust-analyzer clippy
+
+# 6. Setup Java Tools (Manual Maven/Gradle)
+# Apt versions are too old.
+RUN wget https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz -P /tmp && \
+    tar xf /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz -C /opt && \
+    ln -s /opt/apache-maven-${MAVEN_VERSION} /opt/maven && \
+    ln -s /opt/maven/bin/mvn /usr/bin/mvn && \
+    \
+    wget https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -P /tmp && \
+    unzip -d /opt /tmp/gradle-${GRADLE_VERSION}-bin.zip && \
+    ln -s /opt/gradle-${GRADLE_VERSION} /opt/gradle && \
+    ln -s /opt/gradle/bin/gradle /usr/bin/gradle && \
+    rm /tmp/*.zip /tmp/*.tar.gz
+
+ENV JAVA_HOME=/usr/lib/jvm/java-${JAVA_VERSION}-openjdk-amd64 \
+    MAVEN_HOME=/opt/maven \
+    GRADLE_HOME=/opt/gradle
+
+# 7. Setup Zig (Manual)
+# Apt doesn't typically have Zig.
+RUN ARCH=$(uname -m) && \
+    if [ "$ARCH" = "aarch64" ]; then \
+        ZIG_ARCH="aarch64"; \
+    else \
+        ZIG_ARCH="x86_64"; \
+    fi && \
+    wget https://ziglang.org/download/${ZIG_VERSION}/zig-linux-${ZIG_ARCH}-${ZIG_VERSION}.tar.xz -P /tmp && \
+    tar -xf /tmp/zig-linux-${ZIG_ARCH}-${ZIG_VERSION}.tar.xz -C /usr/local/ && \
+    ln -s /usr/local/zig-linux-${ZIG_ARCH}-${ZIG_VERSION}/zig /usr/local/bin/zig && \
+    rm /tmp/*.tar.xz
+
+# 8. Setup Scala (Coursier)
+RUN curl -fL https://github.com/coursier/coursier/releases/latest/download/cs-x86_64-pc-linux.gz | gzip -d > /usr/local/bin/cs && \
+    chmod +x /usr/local/bin/cs && \
+    cs setup --yes --jvm ${JAVA_VERSION} && \
+    cs install scala3 scalafmt
+
+# Update Path for Java/Scala
+ENV PATH="$JAVA_HOME/bin:$MAVEN_HOME/bin:$GRADLE_HOME/bin:$PATH"
+
+EXPOSE 3000-9000
+

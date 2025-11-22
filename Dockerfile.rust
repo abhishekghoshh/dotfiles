@@ -1,0 +1,37 @@
+FROM abhishek1009/ubuntu:latest
+
+# 1. Define Rust Version
+# Override at build time: docker build --build-arg RUST_VERSION=1.82.0 .
+# 'stable' installs the absolute latest version.
+ARG RUST_VERSION=stable
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# 2. Configure Global Environment Variables
+# We set these to /usr/local so they are accessible system-wide.
+# This prevents the installation from being hidden in /root/.cargo
+ENV RUSTUP_HOME=/usr/local/rustup \
+    CARGO_HOME=/usr/local/cargo \
+    PATH=/usr/local/cargo/bin:$PATH
+
+# 3. Install Rust (via Rustup)
+# - We use the official install script.
+# - '-y': Disable confirmation prompts.
+# - '--no-modify-path': We manually handled PATH above.
+# - '--default-toolchain': Installs the specific version defined in ARG.
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | \
+    sh -s -- -y --no-modify-path --default-toolchain ${RUST_VERSION}
+
+# 4. Install Common Dev Tools (Optional but Recommended)
+# Since you use Neovim (in your base image), 'rust-analyzer' is mandatory for LSP.
+# 'clippy': Linter
+# 'rustfmt': Formatter
+RUN rustup component add rust-analyzer clippy rustfmt
+
+# 5. Fix Permissions
+# We allow all users to write to the cargo registry/cache.
+# This fixes "Permission Denied" errors when running 'cargo build' as a non-root user.
+RUN chmod -R 777 "$RUSTUP_HOME" "$CARGO_HOME"
+
+# Expose ports (Rocket/Actix usually run on 8000)
+EXPOSE 8000-9000

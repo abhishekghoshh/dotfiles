@@ -1,0 +1,45 @@
+FROM abhishek1009/ubuntu:latest
+
+# 1. Define Python Version Argument
+# Defaulting to 3.14 (Current Stable)
+ARG PYTHON_VERSION=3.14
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# 2. Install Python via Deadsnakes PPA
+# Your base image already has 'software-properties-common', so we can add the repo immediately.
+RUN add-apt-repository ppa:deadsnakes/ppa -y && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+    python${PYTHON_VERSION} \
+    python${PYTHON_VERSION}-venv \
+    python${PYTHON_VERSION}-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# 3. Set Default Python
+# This maps 'python' and 'python3' to your specific version (e.g., 3.13)
+# avoiding the "command not found" or wrong version issues.
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python${PYTHON_VERSION} 1 && \
+    update-alternatives --install /usr/bin/python3 python3 /usr/bin/python${PYTHON_VERSION} 1
+
+# 4. Install uv (The modern pip replacement)
+# We copy the binary directly from the official image. 
+# This is cleaner and faster than 'curl | sh'.
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
+# 5. Configure Environment Variables
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    # Tell uv to install globally (system-wide) by default
+    UV_SYSTEM_PYTHON=1 \
+    # Tell Poetry not to create a virtualenv (since Docker IS the env)
+    POETRY_VIRTUALENVS_CREATE=false
+
+# 6. Install Poetry and Uvicorn via uv
+# 'uv pip' is significantly faster than standard pip.
+# We install these system-wide using the environment variables set above.
+RUN uv pip install poetry uvicorn
+
+# Expose ports
+EXPOSE 8000-9000

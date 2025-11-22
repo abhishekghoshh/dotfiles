@@ -1,0 +1,23 @@
+FROM abhishek1009/ubuntu:latest
+
+# 1. Install Latest Go via apt-get
+# We add the 'longsleep/golang-backports' PPA to ensure 'apt-get' fetches the
+# latest stable version rather than the outdated default Ubuntu version.
+RUN add-apt-repository ppa:longsleep/golang-backports -y && \
+    apt-get update && \
+    apt-get install -y golang-go && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# 2. Configure Environment Variables
+# 'apt-get' places the go binary in /usr/bin/go, which is already in the system PATH.
+# We only need to configure the GOPATH for workspace/modules.
+ENV GOPATH=/go
+ENV PATH=$GOPATH/bin:$PATH
+
+# 3. Prepare the Workspace
+# We create /go so 'go mod download' and 'go install' have a valid writable location.
+RUN mkdir -p "$GOPATH" && chmod -R 777 "$GOPATH"
+
+# Expose ports
+EXPOSE 8000-9000
