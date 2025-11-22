@@ -26,7 +26,6 @@ RUN apt-get update && \
     python${PYTHON_VERSION}-dev \
     golang-go \
     # --- Utilities ---
-    unzip \
     xz-utils \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -89,7 +88,6 @@ RUN wget https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries
 ENV JAVA_HOME=/usr/lib/jvm/java-${JAVA_VERSION}-openjdk-amd64 \
     MAVEN_HOME=/opt/maven \
     GRADLE_HOME=/opt/gradle
-
 # 7. Setup Zig (Manual)
 # Apt doesn't typically have Zig.
 RUN ARCH=$(uname -m) && \
@@ -101,6 +99,7 @@ RUN ARCH=$(uname -m) && \
     wget https://ziglang.org/download/${ZIG_VERSION}/zig-linux-${ZIG_ARCH}-${ZIG_VERSION}.tar.xz -P /tmp && \
     tar -xf /tmp/zig-linux-${ZIG_ARCH}-${ZIG_VERSION}.tar.xz -C /usr/local/ && \
     ln -s /usr/local/zig-linux-${ZIG_ARCH}-${ZIG_VERSION}/zig /usr/local/bin/zig && \
+    rm -f /tmp/zig-linux-${ZIG_ARCH}-${ZIG_VERSION}.tar.xz && \
     rm /tmp/*.tar.xz
 
 # 8. Setup Scala (Coursier)
