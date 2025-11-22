@@ -15,7 +15,7 @@ on:
 
 
 jobs:
-  create_the_base_images:
+  build_alpine:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -40,6 +40,20 @@ jobs:
           tags: '${{ vars.DOCKERHUB_USERNAME }}/alpine:latest'
           cache-from: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/alpine:cache
           cache-to: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/alpine:cache,mode=max
+  build_ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
       - name: Build and push Docker image for ubuntu
         uses: docker/build-push-action@v6
         with:
@@ -50,9 +64,10 @@ jobs:
           tags: '${{ vars.DOCKERHUB_USERNAME }}/ubuntu:latest'
           cache-from: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/ubuntu:cache
           cache-to: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/ubuntu:cache,mode=max
+
   build_dev:
     runs-on: ubuntu-latest
-    needs: create_the_base_images
+    needs: build_ubuntu
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -78,7 +93,7 @@ jobs:
 
   build_java:
     runs-on: ubuntu-latest
-    needs: create_the_base_images
+    needs: build_ubuntu
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -102,34 +117,35 @@ jobs:
           cache-from: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/java:cache
           cache-to: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/java:cache,mode=max
 
-      build_python:
-        runs-on: ubuntu-latest
-        steps:
-          - name: Checkout repository
-            uses: actions/checkout@v4
-          - name: Login to Docker Hub
-            uses: docker/login-action@v3
-            with:
-              username: ${{ vars.DOCKERHUB_USERNAME }}
-              password: ${{ secrets.DOCKERHUB_TOKEN }}
-          - name: Set up QEMU
-            uses: docker/setup-qemu-action@v3
-          - name: Set up Docker Buildx
-            uses: docker/setup-buildx-action@v3
-          - name: Build and push Docker image for python
-            uses: docker/build-push-action@v6
-            with:
-              context: .
-              file: Dockerfile.python
-              platforms: linux/amd64,linux/arm64
-              push: true
-              tags: '${{ vars.DOCKERHUB_USERNAME }}/python:latest'
-              cache-from: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/python:cache
-              cache-to: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/python:cache,mode=max
+  build_python:
+    runs-on: ubuntu-latest
+    needs: build_ubuntu
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build and push Docker image for python
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.python
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: '${{ vars.DOCKERHUB_USERNAME }}/python:latest'
+          cache-from: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/python:cache
+          cache-to: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/python:cache,mode=max
 
   build_golang:
     runs-on: ubuntu-latest
-    needs: create_the_base_images
+    needs: build_ubuntu
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -155,7 +171,7 @@ jobs:
 
   build_js:
     runs-on: ubuntu-latest
-    needs: create_the_base_images
+    needs: build_ubuntu
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -181,7 +197,7 @@ jobs:
 
   build_rust:
     runs-on: ubuntu-latest
-    needs: create_the_base_images
+    needs: build_ubuntu
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
