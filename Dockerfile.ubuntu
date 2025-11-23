@@ -34,9 +34,9 @@ RUN apt-get update && \
     # Clean up
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update && apt-get upgrade -y && \
-    apt-get install -y lazygit lazydocker && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt update && apt upgrade -y && \
+    apt install -y lazygit lazydocker && \
+    apt clean && rm -rf /var/lib/apt/lists/*
 
 # install fzf manually otherwise latest features are missing in apt version
 RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
