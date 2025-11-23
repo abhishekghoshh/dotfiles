@@ -15,7 +15,7 @@ RUN apt-get update && \
     apt-get install -y git curl wget unzip sudo zsh && \
     apt-get install -y gcc g++ lua5.4 && \
     apt-get install -y fontconfig fonts-powerline && \
-    apt-get install -y bat lsd zoxide neovim tmux jq yq lazygit lazydocker && \
+    apt-get install -y bat lsd zoxide neovim tmux jq yq && \
     # Add Docker's official GPG key
     install -m 0755 -d /etc/apt/keyrings && \
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc && \
@@ -34,6 +34,9 @@ RUN apt-get update && \
     # Clean up
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get install -y lazygit lazydocker && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # install fzf manually otherwise latest features are missing in apt version
 RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
