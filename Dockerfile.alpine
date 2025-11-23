@@ -39,10 +39,10 @@ RUN mkdir -p /workspace/dotfiles
 # copy . ./
 COPY . /workspace/dotfiles
 
-RUN chmod +x /workspace/dotfiles/installer.sh
+RUN chmod +x /workspace/dotfiles/scripts/installer.sh
 
 # run the installer script
-# RUN /workspace/dotfiles/installer.sh
+# RUN /workspace/dotfiles/scripts/installer.sh
 
 # Make the script executable
 RUN chmod +x /workspace/dotfiles/scripts/typing-practice.sh
