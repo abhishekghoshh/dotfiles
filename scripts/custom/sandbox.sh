@@ -1,10 +1,118 @@
 #!/bin/bash
 
-# Generic functions that accept image name and shell as parameters
+get_port_mappings() {
+  local ports=()
+  local port_args=""
+  
+  while true; do
+    # Show current ports and options
+    local options=("Add new port mapping" "Finish and continue")
+    if [[ ${#ports[@]} -gt 0 ]]; then
+      options=("${ports[@]}" "Add new port mapping" "Remove a port mapping" "Finish and continue")
+    fi
+    
+    local selected=$(printf "%s\n" "${options[@]}" | \
+      fzf --prompt="Port mappings (current: ${ports[*]:-none}): " \
+          --header="Select action for port forwarding" \
+          --height=50% --border --layout=reverse)
+    
+    case "$selected" in
+      "Add new port mapping")
+        echo "Enter port mapping (format: host_port:container_port, e.g., 8080:80):" >&2
+        read -r port_mapping
+        if [[ "$port_mapping" =~ ^[0-9]+:[0-9]+$ ]]; then
+          ports+=("$port_mapping")
+        else
+          echo "Invalid format. Please use host_port:container_port" >&2
+          sleep 1
+        fi
+        ;;
+      "Remove a port mapping")
+        if [[ ${#ports[@]} -gt 0 ]]; then
+          local to_remove=$(printf "%s\n" "${ports[@]}" | fzf --prompt="Select port to remove: ")
+          if [[ -n "$to_remove" ]]; then
+            ports=(${ports[@]/$to_remove})
+          fi
+        fi
+        ;;
+      "Finish and continue"|"")
+        break
+        ;;
+      *)
+        # Selected an existing port, ignore or could edit
+        ;;
+    esac
+  done
+  
+  # Build port arguments
+  for port in "${ports[@]}"; do
+    port_args="$port_args -p $port"
+  done
+  
+  echo "$port_args"
+}
+
+# Function to get volume mappings using fzf
+get_volume_mappings() {
+  local volumes=()
+  local volume_args=""
+  
+  while true; do
+    # Show current volumes and options
+    local options=("Add new volume mapping" "Finish and continue")
+    if [[ ${#volumes[@]} -gt 0 ]]; then
+      options=("${volumes[@]}" "Add new volume mapping" "Remove a volume mapping" "Finish and continue")
+    fi
+    
+    local selected=$(printf "%s\n" "${options[@]}" | \
+      fzf --prompt="Volume mappings (current: ${volumes[*]:-none}): " \
+          --header="Select action for volume mounting" \
+          --height=50% --border --layout=reverse)
+    
+    case "$selected" in
+      "Add new volume mapping")
+        echo "Enter volume mapping (format: host_path:container_path:permission, e.g., /home/user/data:/data:rw):" >&2
+        read -r volume_mapping
+        if [[ "$volume_mapping" =~ ^[^:]+:[^:]+:[^:]+$ ]]; then
+          volumes+=("$volume_mapping")
+        else
+          echo "Invalid format. Please use host_path:container_path:permission" >&2
+          sleep 1
+        fi
+        ;;
+      "Remove a volume mapping")
+        if [[ ${#volumes[@]} -gt 0 ]]; then
+          local to_remove=$(printf "%s\n" "${volumes[@]}" | fzf --prompt="Select volume to remove: ")
+          if [[ -n "$to_remove" ]]; then
+            volumes=(${volumes[@]/$to_remove})
+          fi
+        fi
+        ;;
+      "Finish and continue"|"")
+        break
+        ;;
+      *)
+        # Selected an existing volume, ignore or could edit
+        ;;
+    esac
+  done
+  
+  # Build volume arguments
+  for volume in "${volumes[@]}"; do
+    volume_args="$volume_args -v $volume"
+  done
+  
+  echo "$volume_args"
+}
+
 ephemeral_env() {
   local image="$1"
   local shell="${2:-sh}"
-  docker run -it --rm \
+
+  port_args=$(get_port_mappings)
+  volume_args=$(get_volume_mappings)
+
+  docker run -it --rm $port_args $volume_args \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v ~/.kube:/root/.kube:ro \
     -v ~/.ssh:/root/.ssh:ro \
@@ -14,9 +122,13 @@ ephemeral_env() {
 temp_env() {
   local image="$1"
   local shell="${2:-sh}"
+  
   rand_dir="sandbox-$(date +%s%N | sha256sum | head -c 8)"
   mkdir "$rand_dir"
-  docker run -it --rm \
+  port_args=$(get_port_mappings)
+  volume_args=$(get_volume_mappings)
+
+  docker run -it --rm $port_args $volume_args \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v ~/.kube:/root/.kube:ro \
     -v ~/.ssh:/root/.ssh:ro \
@@ -28,8 +140,12 @@ temp_env() {
 curr_env() {
   local image="$1"
   local shell="${2:-sh}"
+
   curr_dir_name="$(basename "$PWD")"
-  docker run -it --rm \
+  port_args=$(get_port_mappings)
+  volume_args=$(get_volume_mappings)
+
+  docker run -it --rm $port_args $volume_args \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v ~/.kube:/root/.kube:ro \
     -v ~/.ssh:/root/.ssh:ro \
@@ -39,9 +155,9 @@ curr_env() {
 }
 
 # Convenience functions for specific images
-alpine_ephemeral() { ephemeral_env "abhishek1009/alpine:latest" "sh"; }
-alpine_temp() { temp_env "abhishek1009/alpine:latest" "sh"; }
-alpine_curr() { curr_env "abhishek1009/alpine:latest" "sh"; }
+alpine_ephemeral() { ephemeral_env "abhishek1009/alpine:latest" "zsh"; }
+alpine_temp() { temp_env "abhishek1009/alpine:latest" "zsh"; }
+alpine_curr() { curr_env "abhishek1009/alpine:latest" "zsh"; }
 
 ubuntu_ephemeral() { ephemeral_env "abhishek1009/ubuntu:latest" "zsh"; }
 ubuntu_temp() { temp_env "abhishek1009/ubuntu:latest" "zsh"; }

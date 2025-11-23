@@ -38,6 +38,7 @@ link_dotfiles() {
     fi
 
     if [ ! -e "$HOME/.config/alacritty" ]; then
+        mkdir -p "$HOME/.config/alacritty"
         ln -sf "$DOTFILES/alacritty/alacritty.toml" "$HOME/.config/alacritty/alacritty.toml"
     else
         echo "$HOME/.config/alacritty already exists. Skipping link."
@@ -52,8 +53,8 @@ link_dotfiles() {
 # Function to link custom shell scripts
 link_custom_shell_scripts() {
     # Define source and target directories
-    export source_sh_dir="$DOTFILES/custom-shell-scripts"
-    export target_sh_dir="$HOME/.config/custom-shell-scripts"
+    export source_sh_dir="$DOTFILES/scripts/custom"
+    export target_sh_dir="$HOME/.config/scripts/custom"
 
     # Ensure the target folder exists
     mkdir -p "$target_sh_dir"

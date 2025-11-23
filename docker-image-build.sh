@@ -3,17 +3,17 @@
 # Toggle variables - set to false to skip individual builds
 BUILD_IMAGES=true
 
-BUILD_DOCS=true
-BUILD_ALPINE=true
+BUILD_DOCS=false
+BUILD_ALPINE=false
 BUILD_UBUNTU=true
 
-BUILD_DEV=true
+BUILD_DEV=false
 
-BUILD_GOLANG=true
-BUILD_JAVA=true
-BUILD_JS=true
-BUILD_PYTHON=true
-BUILD_RUST=true
+BUILD_GOLANG=false
+BUILD_JAVA=false
+BUILD_JS=false
+BUILD_PYTHON=false
+BUILD_RUST=false
 
 
 if [ "$BUILD_IMAGES" = true ]; then

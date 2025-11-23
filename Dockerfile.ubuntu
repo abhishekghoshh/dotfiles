@@ -11,18 +11,45 @@ RUN apt-get update && \
     apt-add-repository -y universe && \
     apt-add-repository -y ppa:deadsnakes/ppa && \
     apt-get update && \
-    apt-get install -y libcairo2 libcairo2-dev && \
-    apt-get install -y git curl wget unzip sudo && \
+    apt-get install -y ca-certificates libcairo2 libcairo2-dev cmake gnupg && \
+    apt-get install -y git curl wget unzip sudo zsh && \
     apt-get install -y gcc g++ lua5.4 && \
     apt-get install -y fontconfig fonts-powerline && \
-    apt-get install -y zsh bat lsd zoxide neovim tmux jq yq && \
+    apt-get install -y bat lsd zoxide neovim tmux jq yq lazygit lazydocker && \
+    # Add Docker's official GPG key
+    install -m 0755 -d /etc/apt/keyrings && \
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc && \
+    chmod a+r /etc/apt/keyrings/docker.asc && \
+    # Setup the repository
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+    tee /etc/apt/sources.list.d/docker.list > /dev/null && \
+    # Install Docker CLI and Compose Plugin (not the engine)
+    apt-get update && \
+    apt-get install -y docker-ce-cli docker-compose-plugin && \
+    # Download and install kubectl
+    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" && \
+    install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl && \
+    rm kubectl && \
+    # Clean up
     apt-get clean && rm -rf /var/lib/apt/lists/*
+
+
+# install fzf manually otherwise latest features are missing in apt version
+RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
 
 RUN chsh -s $(which zsh)
 
-# install fzf manually
-RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
+# set the default shell to zsh
+SHELL ["/bin/zsh", "-c"]
 
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+RUN wget -P "$HOME/.local/share/fonts" https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip \
+            && cd "$HOME/.local/share/fonts" \
+            && unzip -o JetBrainsMono.zip \
+            && rm JetBrainsMono.zip \
+            && fc-cache -fv
 
 ENV DOTFILES=/workspace/dotfiles
 
@@ -35,13 +62,10 @@ RUN mkdir -p /workspace/dotfiles
 # copy . ./
 COPY . /workspace/dotfiles
 
-RUN chmod +x /workspace/dotfiles/installer.sh
+RUN chmod +x /workspace/dotfiles/scripts/installer.sh
 
 # run the installer script
-RUN /workspace/dotfiles/installer.sh
-
-# set the default shell to zsh
-SHELL ["/bin/zsh", "-c"]
+RUN /workspace/dotfiles/scripts/installer.sh
 
 # set the default command to zsh
 CMD ["zsh"]
