@@ -1,0 +1,1690 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://abhishekghoshh.github.io/dotfiles/nvim/vim-motions/">
+      
+      
+        <link rel="prev" href="../installation/">
+      
+      
+        <link rel="next" href="../nvim-resources/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.50">
+    
+    
+      
+        <title>vim-motions - dotfiles</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a40c8224.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="vim-motions - dotfiles" >
+      
+        <meta  property="og:description"  content="None" >
+      
+        <meta  property="og:image"  content="https://abhishekghoshh.github.io/dotfiles/assets/images/social/nvim/vim-motions.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://abhishekghoshh.github.io/dotfiles/nvim/vim-motions/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="vim-motions - dotfiles" >
+      
+        <meta  name="twitter:description"  content="None" >
+      
+        <meta  name="twitter:image"  content="https://abhishekghoshh.github.io/dotfiles/assets/images/social/nvim/vim-motions.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vim-motion-cheatsheet" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="dotfiles" class="md-header__button md-logo" aria-label="dotfiles" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            dotfiles
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              vim-motions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="lime"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../cmd-line-tools/zsh/" class="md-tabs__link">
+          
+  
+  cmd-line tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../introduction/" class="md-tabs__link">
+          
+  
+  nvim
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../shortcuts/typing/" class="md-tabs__link">
+          
+  
+  shortcuts
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="dotfiles" class="md-nav__button md-logo" aria-label="dotfiles" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    dotfiles
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    cmd-line tools
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            cmd-line tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cmd-line-tools/zsh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    zsh
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cmd-line-tools/iterm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    iterm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cmd-line-tools/alacritty/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    alacritty
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cmd-line-tools/tmux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tmux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    nvim
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            nvim
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vim.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vim
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vim-resources.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vim-resources
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    vim-motions
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    vim-motions
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#blogs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Blogs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#youtube" class="md-nav__link">
+    <span class="md-ellipsis">
+      Youtube
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cursor-movement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cursor Movement
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-motion-shortcuts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Motion Shortcuts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#editing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Editing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#insert-visual-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Insert &amp; Visual Modes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#indentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Indentation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commenting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commenting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finding-and-replacing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Finding and Replacing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#line-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Line Numbers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#searching-and-changing-words" class="md-nav__link">
+    <span class="md-ellipsis">
+      Searching and Changing Words
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Scenarios
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nvim-resources/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nvim-resources
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nvim-shortcuts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nvim-shortcuts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../go-setup.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    go
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../java-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    java-setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rust-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rust-setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    shortcuts
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            shortcuts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../shortcuts/typing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    typing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../shortcuts/command-line/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    command line
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../shortcuts/shell/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    shell
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../shortcuts/chrome/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    chrome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<div><h1 id="vim-motion-cheatsheet">vim motion cheatsheet</h1>
+<h2 id="blogs">Blogs</h2>
+<ul>
+<li><a href="https://www.shortcutfoo.com/app/dojos/neovim/cheatsheet">shortcutfoo</a></li>
+<li><a href="https://devhints.io/vim">devhints</a></li>
+<li><a href="https://vim.rtorr.com/">Vim Cheat Sheet</a></li>
+<li><a href="https://www.warp.dev/topic/vim">warp.dev</a></li>
+<li><a href="https://www.vim-hero.com/lessons/basic-movement">vim-hero</a></li>
+</ul>
+<h2 id="youtube">Youtube</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=lWTzqPfy1gE">Vim Motions for absolute beginners!!!</a></li>
+<li><a href="https://www.youtube.com/watch?v=nBjEzQlJLHE">Intermediate Vim Motions and Pro Tips!!!</a></li>
+<li><a href="https://www.youtube.com/watch?v=5BU2gBOe9RU">Vim Tips I Wish I Knew Earlier</a></li>
+<li><a href="https://www.youtube.com/watch?v=gccGjwTZA7k">10 Advanced Vim Features (You Probably Didn't Know)</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLm323Lc7iSW_wuxqmKx_xxNtJC_hJbQ7R">Vim As Your Editor</a></li>
+<li><a href="https://www.youtube.com/watch?v=RZ4p-saaQkc">Vim Tutorial for Beginners</a></li>
+<li><a href="https://www.youtube.com/watch?v=RSlrxE21l_k">30 Vim commands you NEED TO KNOW (in just 10 minutes)</a></li>
+</ul>
+<h2 id="cursor-movement">Cursor Movement</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>h</code></td>
+<td>Move cursor left</td>
+</tr>
+<tr>
+<td><code>j</code></td>
+<td>Move cursor down</td>
+</tr>
+<tr>
+<td><code>k</code></td>
+<td>Move cursor up</td>
+</tr>
+<tr>
+<td><code>l</code></td>
+<td>Move cursor right</td>
+</tr>
+<tr>
+<td><code>w</code></td>
+<td>Jump forward to the start of the next word</td>
+</tr>
+<tr>
+<td><code>e</code></td>
+<td>Jump forward to the end of the current word</td>
+</tr>
+<tr>
+<td><code>b</code></td>
+<td>Jump backward to the start of the previous word</td>
+</tr>
+<tr>
+<td><code>gg</code></td>
+<td>Go to the first line of the file</td>
+</tr>
+<tr>
+<td><code>G</code> (<code>Shift+g</code>)</td>
+<td>Go to the last line of the file</td>
+</tr>
+<tr>
+<td><code>$</code> (<code>Shift+4</code>)</td>
+<td>Move cursor to the end of the current line</td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td>Move cursor to the beginning of the current line</td>
+</tr>
+<tr>
+<td><code>^</code> (<code>Shift+6</code>)</td>
+<td>Move cursor to the first non-empty character of the line</td>
+</tr>
+<tr>
+<td><code>)</code> (<code>Shift+0</code>)</td>
+<td>Move cursor to the start of the next sentence</td>
+</tr>
+<tr>
+<td><code>ESC</code></td>
+<td>Terminate insert mode</td>
+</tr>
+</tbody>
+</table>
+<h2 id="additional-motion-shortcuts">Additional Motion Shortcuts</h2>
+<table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Shift + Left Arrow</code></td>
+<td>Move to the start of the previous word</td>
+</tr>
+<tr>
+<td><code>Shift + Right Arrow</code></td>
+<td>Move to the start of the next word</td>
+</tr>
+<tr>
+<td><code>Shift + Down Arrow</code></td>
+<td>Go to the ending line of the current page</td>
+</tr>
+<tr>
+<td><code>Shift + Up Arrow</code></td>
+<td>Go to the starting line of the current page</td>
+</tr>
+<tr>
+<td><code>(</code> or <code>Shift + 9</code></td>
+<td>Jump to the start of the previous sentence</td>
+</tr>
+<tr>
+<td><code>)</code> or <code>Shift + 0</code></td>
+<td>Jump to the start of the next sentence</td>
+</tr>
+<tr>
+<td><code>}</code> or <code>Shift + ]</code></td>
+<td>Jump to the start of the next paragraph (next empty line)</td>
+</tr>
+<tr>
+<td><code>{</code> or <code>Shift + [</code></td>
+<td>Jump to the start of the previous paragraph (previous empty line)</td>
+</tr>
+<tr>
+<td><code>[</code></td>
+<td>Go to the start of the first line</td>
+</tr>
+<tr>
+<td><code>]</code></td>
+<td>Go to the start of the last line</td>
+</tr>
+<tr>
+<td><code>Ctrl + b</code></td>
+<td>Move a page up (back)</td>
+</tr>
+<tr>
+<td><code>Ctrl + f</code></td>
+<td>Move a page down (front)</td>
+</tr>
+<tr>
+<td><code>Ctrl + u</code></td>
+<td>Move half a page up</td>
+</tr>
+<tr>
+<td><code>Ctrl + d</code></td>
+<td>Move half a page down</td>
+</tr>
+<tr>
+<td><code>%</code></td>
+<td>Jump to the matching parenthesis, bracket, or brace (useful for navigating code blocks)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="editing">Editing</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>d</code></td>
+<td>Delete (used with motions, e.g., <code>dw</code> to delete word)</td>
+</tr>
+<tr>
+<td><code>dd</code></td>
+<td>Delete current line</td>
+</tr>
+<tr>
+<td><code>3dd</code></td>
+<td>Delete 3 lines</td>
+</tr>
+<tr>
+<td><code>D</code></td>
+<td>Delete contents of line after the cursor</td>
+</tr>
+<tr>
+<td><code>(Shift + j)</code></td>
+<td>Remove empty lines and append the start of the next line to the end of the current line</td>
+</tr>
+<tr>
+<td><code>C</code></td>
+<td>Delete contents of a line after the cursor and insert new text. Press ESC to end insertion.</td>
+</tr>
+<tr>
+<td><code>dw</code></td>
+<td>Delete word</td>
+</tr>
+<tr>
+<td><code>4dw</code></td>
+<td>Delete 4 words</td>
+</tr>
+<tr>
+<td><code>cw</code></td>
+<td>Change word</td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td>Delete character under cursor</td>
+</tr>
+<tr>
+<td><code>r</code></td>
+<td>Replace character</td>
+</tr>
+<tr>
+<td><code>R</code></td>
+<td>Overwrite characters from cursor onward</td>
+</tr>
+<tr>
+<td><code>s</code></td>
+<td>Substitute one character under cursor and continue to insert</td>
+</tr>
+<tr>
+<td><code>S</code></td>
+<td>Substitute entire line and begin to insert at the beginning of the line</td>
+</tr>
+<tr>
+<td><code>~</code></td>
+<td>Change case of individual character</td>
+</tr>
+<tr>
+<td><code>y</code></td>
+<td>Yank (copy, used with motions, e.g., <code>yw</code> to yank word)</td>
+</tr>
+<tr>
+<td><code>p</code></td>
+<td>Paste after cursor</td>
+</tr>
+<tr>
+<td><code>P</code></td>
+<td>Paste before cursor (or after the current word)</td>
+</tr>
+<tr>
+<td><code>u</code></td>
+<td>Undo last change</td>
+</tr>
+<tr>
+<td><code>U</code></td>
+<td>Undo all changes to the entire line</td>
+</tr>
+<tr>
+<td><code>Ctrl+r</code></td>
+<td>Redo last undone change</td>
+</tr>
+</tbody>
+</table>
+<h2 id="insert-visual-modes">Insert &amp; Visual Modes</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>i</code></td>
+<td>Insert at cursor (enter insert mode)</td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td>Insert after cursor (enter insert mode)</td>
+</tr>
+<tr>
+<td><code>A</code></td>
+<td>Insert at the end of line (enter insert mode)</td>
+</tr>
+<tr>
+<td><code>o</code></td>
+<td>Open a new line below and enter insert mode</td>
+</tr>
+<tr>
+<td><code>v</code></td>
+<td>Enter visual mode (select text)</td>
+</tr>
+<tr>
+<td><code>v 10j</code> → <code>I var</code></td>
+<td>Select 10 lines, insert <code>var</code> at the start of each line</td>
+</tr>
+<tr>
+<td><code>v 10j</code> → <code>A var;</code></td>
+<td>Select 10 lines, append <code>var;</code> at the end of each line</td>
+</tr>
+<tr>
+<td><code>Ctrl+v</code> <code>5l</code> <code>10j</code> <code>Shift+I</code></td>
+<td>Block select 5 columns across 10 lines, insert text at start, press ESC to apply to all lines</td>
+</tr>
+<tr>
+<td><code>Ctrl+v</code> <code>5l</code> <code>10j</code> <code>Shift+A</code></td>
+<td>Block select 5 columns across 10 lines, append text at end, press ESC to apply to all lines</td>
+</tr>
+<tr>
+<td><code>Ctrl+v</code> <code>$</code> <code>10j</code> <code>Shift+A</code></td>
+<td>Block select to end of line across 10 lines, append text, press ESC to apply to all lines</td>
+</tr>
+<tr>
+<td><code>&gt;</code> (in visual mode)</td>
+<td>Indent selected lines to the right</td>
+</tr>
+<tr>
+<td><code>&lt;</code> (in visual mode)</td>
+<td>Unindent selected lines to the left</td>
+</tr>
+<tr>
+<td><code>Shift+o</code> (in visual mode)</td>
+<td>Change selection direction to include the first line when selecting lines</td>
+</tr>
+</tbody>
+</table>
+<h2 id="indentation">Indentation</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&gt;&gt;</code></td>
+<td>Indent the current line</td>
+</tr>
+<tr>
+<td><code>4&gt;&gt;</code></td>
+<td>Indent the next four lines</td>
+</tr>
+<tr>
+<td><code>&gt;3j</code></td>
+<td>Indent the current line and the next three lines (from this line to three lines down)</td>
+</tr>
+<tr>
+<td><code>&gt;}</code></td>
+<td>Indent all lines until the end of the paragraph (up to the first empty line, see <code>:help object-motions</code>)</td>
+</tr>
+<tr>
+<td><code>&gt;ap</code></td>
+<td>Indent all lines in the current paragraph</td>
+</tr>
+</tbody>
+</table>
+<h2 id="commenting">Commenting</h2>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Command / Plugin Example</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Comment out a single line</td>
+<td><code>gcc</code> (with <a href="https://github.com/tpope/vim-commentary">vim-commentary</a> or <a href="https://github.com/numToStr/Comment.nvim">Comment.nvim</a>)</td>
+<td>Comment or uncomment the current line</td>
+</tr>
+<tr>
+<td>Comment out selected lines</td>
+<td><code>gc</code> in visual mode (with plugin)</td>
+<td>Comment or uncomment the selected lines</td>
+</tr>
+</tbody>
+</table>
+<h2 id="finding-and-replacing">Finding and Replacing</h2>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Command / Steps</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Find a word under cursor</td>
+<td><code>*</code></td>
+<td>Search for the next occurrence of the word under the cursor</td>
+</tr>
+<tr>
+<td>Find previous occurrence</td>
+<td><code>#</code></td>
+<td>Search for the previous occurrence of the word under the cursor</td>
+</tr>
+<tr>
+<td>Find a specific word</td>
+<td><code>/word</code></td>
+<td>Search forward for "word"</td>
+</tr>
+<tr>
+<td>Find and replace all occurrences</td>
+<td><code>:%s/old/new/g</code></td>
+<td>Replace all occurrences of "old" with "new" in the entire file</td>
+</tr>
+<tr>
+<td>Find and replace in current line</td>
+<td><code>:s/old/new/g</code></td>
+<td>Replace all occurrences of "old" with "new" in the current line</td>
+</tr>
+<tr>
+<td>Find and replace with confirmation</td>
+<td><code>:%s/old/new/gc</code></td>
+<td>Replace all occurrences with confirmation (prompt before each replacement)</td>
+</tr>
+<tr>
+<td>Find and replace one by one</td>
+<td><code>:s/old/new/c</code></td>
+<td>Replace with confirmation in the current line (prompt for each occurrence)</td>
+</tr>
+<tr>
+<td>Find and replace in selection (visual)</td>
+<td>Select text, then <code>:s/old/new/g</code></td>
+<td>Replace all occurrences in the visually selected lines</td>
+</tr>
+<tr>
+<td>Repeat last search</td>
+<td><code>n</code></td>
+<td>Move to the next occurrence of the last search</td>
+</tr>
+<tr>
+<td>Repeat last search in opposite direction</td>
+<td><code>N</code></td>
+<td>Move to the previous occurrence of the last search</td>
+</tr>
+</tbody>
+</table>
+<h2 id="line-numbers">Line Numbers</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>:set nu</code></td>
+<td>Enable absolute line numbers</td>
+</tr>
+<tr>
+<td><code>:set nu!</code></td>
+<td>Toggle absolute line numbers</td>
+</tr>
+<tr>
+<td><code>:set rnu</code></td>
+<td>Enable relative line numbers</td>
+</tr>
+<tr>
+<td><code>:set nornu</code></td>
+<td>Disable relative line numbers</td>
+</tr>
+</tbody>
+</table>
+<h2 id="searching-and-changing-words">Searching and Changing Words</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>*</code></td>
+<td>Search for the next occurrence of the word under the cursor</td>
+</tr>
+<tr>
+<td><code>n</code></td>
+<td>Move to the next occurrence of the searched word</td>
+</tr>
+<tr>
+<td><code>N</code> (<code>Shift+n</code>)</td>
+<td>Move to the previous occurrence of the searched word</td>
+</tr>
+<tr>
+<td><code>ciw</code></td>
+<td>Change inside word (delete the entire word and enter insert mode)</td>
+</tr>
+<tr>
+<td><code>.</code></td>
+<td>Repeat the last change (e.g., after <code>ciw</code>, use <code>.</code> to change the next occurrence in the same way)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="common-scenarios">Common Scenarios</h2>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Command(s) / Steps</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cursor anywhere on the first line, want to move to the start of the line</td>
+<td><code>0</code></td>
+<td>Move cursor to the beginning of the current line</td>
+</tr>
+<tr>
+<td>Cursor anywhere on the first line, want to move to the first non-blank</td>
+<td><code>^</code></td>
+<td>Move cursor to the first non-empty character of the line</td>
+</tr>
+<tr>
+<td>Cursor anywhere on the first line, want to move to the end of the line</td>
+<td><code>$</code></td>
+<td>Move cursor to the end of the current line</td>
+</tr>
+<tr>
+<td>Cursor anywhere on the first line, want to delete the line</td>
+<td><code>dd</code></td>
+<td>Delete the current line</td>
+</tr>
+<tr>
+<td>Cursor anywhere on the first line, want to change the whole line</td>
+<td><code>cc</code></td>
+<td>Change (replace) the entire line and enter insert mode</td>
+</tr>
+<tr>
+<td>Cursor anywhere on the first line, want to yank (copy) the line</td>
+<td><code>yy</code></td>
+<td>Yank (copy) the current line</td>
+</tr>
+<tr>
+<td>Cursor anywhere on the first line, want to append text at end</td>
+<td><code>A</code></td>
+<td>Move to end of line and enter insert mode</td>
+</tr>
+<tr>
+<td>Cursor anywhere on the first line, want to insert text at start</td>
+<td><code>I</code></td>
+<td>Move to first non-blank character and enter insert mode</td>
+</tr>
+</tbody>
+</table></div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2025 <a href="https://github.com/abhishekghoshh"  target="_blank" rel="noopener">Abhishek Ghosh</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/abhishekghoshh" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://x.com/abhishek_ghoshh" target="_blank" rel="noopener" title="x.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/abhishek-ghosh-220679132/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.60a45f97.min.js"></script>
+      
+    
+  </body>
+</html>
