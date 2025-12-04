@@ -41,5 +41,8 @@ ENV PYTHONUNBUFFERED=1 \
 # We install these system-wide using the environment variables set above.
 RUN uv pip install poetry uvicorn
 
+# Add jupyter lab installation
+RUN uv pip install jupyter
+
 # Expose ports
 EXPOSE 8000-9000

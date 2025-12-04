@@ -5,3 +5,4 @@
 - [ ] move custom-shell-scripts to sceipts
 - [ ] create a script to search and dowload language compilers
 - [ ] Delete dev dockerfile
+- [ ] Minimize the docker sizes

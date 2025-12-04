@@ -5,14 +5,14 @@ BUILD_IMAGES=true
 
 BUILD_DOCS=false
 BUILD_ALPINE=false
-BUILD_UBUNTU=true
+BUILD_UBUNTU=false
 
 BUILD_DEV=false
 
 BUILD_GOLANG=false
 BUILD_JAVA=false
 BUILD_JS=false
-BUILD_PYTHON=false
+BUILD_PYTHON=true
 BUILD_RUST=false
 
 
