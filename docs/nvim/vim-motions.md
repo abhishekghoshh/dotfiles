@@ -9,6 +9,9 @@
 - [Vim Cheat Sheet](https://vim.rtorr.com/)
 - [warp.dev](https://www.warp.dev/topic/vim)
 - [vim-hero](https://www.vim-hero.com/lessons/basic-movement)
+- [50 Useful Vim Commands](https://vimtricks.com/p/50-useful-vim-commands/)
+- [Vim cheatsheet](https://devhints.io/vim)
+
 
 ## Youtube
 
@@ -20,6 +23,10 @@
 - [Vim Tutorial for Beginners](https://www.youtube.com/watch?v=RZ4p-saaQkc)
 - [30 Vim commands you NEED TO KNOW (in just 10 minutes)](https://www.youtube.com/watch?v=RSlrxE21l_k)
 
+
+## Courses
+
+- [Vim for Beginners Part One: Your First Steps](https://typecraft.dev/education/courses/vim-for-beginners-your-first-steps)
 
 
 ## Cursor Movement
