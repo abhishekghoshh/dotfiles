@@ -3,6 +3,11 @@
 
 ## ZSH
 
+### Customization
+
+- [10 Zsh hacks I wish I knew about sooner](https://www.youtube.com/watch?v=3fVAtaGhUyU)
+
+
 ### Setup ZSH with oh-my-zsh, fonts, suggestions and powerlevel10k
 
 ```zsh
@@ -75,6 +80,7 @@ p10k configure
 ## fzf
 
 ### Youtube
+
 - [This may be my favorite CLI tool ever](https://www.youtube.com/watch?v=oTNRvnQLLLs)
 - [FZF Will CHANGE How You Work](https://www.youtube.com/watch?v=MvLQor1Ck3M)
 
@@ -91,6 +97,7 @@ eval "$(zoxide init zsh)"
 
 
 ### Youtube
+
 - [zoxide has forever improved the way I navigate in the terminal.](https://www.youtube.com/watch?v=aghxkpyRVDY)
 
 
@@ -99,6 +106,7 @@ eval "$(zoxide init zsh)"
 ## Command line password manager
 
 ### Youtube
+
 - [This is perhaps my favorite password manager for the terminal](https://www.youtube.com/watch?v=FhwsfH2TpFA)
 
 
