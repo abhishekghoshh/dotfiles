@@ -202,6 +202,18 @@ link_tmux_config(){
     else
         echo "$HOME/.config/tmux/tmux.conf already exists. Skipping link."
     fi
+
+    if [ ! -e "$HOME/.config/tmux.conf" ]; then
+        ln -sf "$DOTFILES/tmux/.tmux.conf" "$HOME/.config/tmux.conf"
+    else
+        echo "$HOME/.config/tmux.conf already exists. Skipping link."
+    fi
+
+    if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    else
+        echo "$HOME/.tmux/plugins/tpm already exists. Skipping clone."
+    fi
 }
 
 
