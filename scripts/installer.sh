@@ -190,9 +190,25 @@ set_powerlevel10k() {
     fi
 }
 
+link_tmux_config(){
+    if [ ! -e "$HOME/.tmux.conf" ]; then
+        ln -sf "$DOTFILES/tmux/.tmux.conf" "$HOME/.tmux.conf"
+    else
+        echo "$HOME/.tmux.conf already exists. Skipping link."
+    fi
+    if [ ! -e "$HOME/.config/tmux/tmux.conf" ]; then
+        mkdir -p "$HOME/.config/tmux"
+        ln -sf "$DOTFILES/tmux/.tmux.conf" "$HOME/.config/tmux/tmux.conf"
+    else
+        echo "$HOME/.config/tmux/tmux.conf already exists. Skipping link."
+    fi
+}
+
+
 # Call the function
 customize_zsh
 download_fonts
 set_powerlevel10k
 link_custom_shell_scripts
 link_dotfiles
+link_tmux_config

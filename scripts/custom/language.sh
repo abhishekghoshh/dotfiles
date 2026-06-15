@@ -12,8 +12,8 @@
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-11.jdk/Contents/Home/
 # export PATH="/Library/Java/JavaVirtualMachines/openjdk-11.jdk/Contents/Home/bin:$PATH"
 
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-25.jdk/Contents/Home/
-export PATH="/Library/Java/JavaVirtualMachines/jdk-25.jdk/Contents/Home/bin:$PATH"
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-25.jdk/Contents/Home/
+# export PATH="/Library/Java/JavaVirtualMachines/jdk-25.jdk/Contents/Home/bin:$PATH"
 
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home/
 # export PATH="/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home/bin:$PATH"

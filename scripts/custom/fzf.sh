@@ -1,5 +1,10 @@
 #!/bin/bash
 
+eval "$(fzf --zsh)"
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:wrap --reverse --height 60%"
+# export FZF_CTRL_R_OPTS="--exact"
+# export FZF_CTRL_R_OPTS="--reverse --height 40%"
+
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
